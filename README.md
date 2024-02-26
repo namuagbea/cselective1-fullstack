@@ -7,7 +7,7 @@ The _Dental Clinic Appointment System_ allows potential customers to book an app
 * Seamless Online Bookings — Allows customers to book their appointments online and not have to go to the clinic just to schedule a date.
 * Patient Profiles — The system would have a stored background information of the patients medical history and treatment preferences for personalized care.
 * Calendar Management — Users of the system, be it an admin or a patient, would have access to the system’s calendar appointments to manage availability and eliminate the possibility of double bookings and the like.
-* Patient Communication — Patients would be notified of their upcoming appointments via their respective emails or SMS, whichever they prefer. This allows communication between the patients and clinic staff regarding appointments, treatments, and follow-ups if necessary.
+* Patient Communication — Patients would be notified of their upcoming appointments via their respective emails or SMS, whichever they prefer. This allows communication between the patients and clinic staff regarding appointments and necessary procedures.
 
 Overall, the application provides convenience and ease of use for all its benefactors.
 
