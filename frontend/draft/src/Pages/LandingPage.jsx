@@ -9,7 +9,7 @@ const LandingPage = () => {
     return (
      <>
       <div>
-       <div className="h-[900px] relative">
+       <div className="h-[108vh] ">
         <MenuBar />
         <Home />
        </div>
