@@ -7,7 +7,7 @@ const Home = () => {
       <div className="">
        <div className="col">
         <div className="row flex justify-between static">
-         <div className="col mx-24 mt-40">
+         <div className="col mx-24 mt-44">
           <h2 className="text-3xl font-bold">
            Your
            <span className="text-sky-500"> SMILE </span>

@@ -11,6 +11,6 @@ const DoctorIMG = () => {
     </div>
    </div>
   );
-}
+} 
 
 export default DoctorIMG

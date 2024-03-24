@@ -8,7 +8,7 @@ import Home from '../Components/Home.jsx';
 const LandingPage = () => {
     return (
      <>
-      <div>
+      <div className="bg-[#F1F9FC]">
        <div className="h-[108vh] ">
         <MenuBar />
         <Home />
