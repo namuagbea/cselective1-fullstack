@@ -3,11 +3,11 @@ import React from 'react'
 const AboutCard = () => {
     return (
      <div>
-      <div className="flex w-[90vh] md:flex-row bg-[#03ADE0] flex-wrap text-[#FDFEFF] bg-opacity-80">
-       <div className=" md:w-1/4 p-4 text-right text-[4vh] mt-12 font-bold">
+      <div className="flex w-[90vh] md:flex-row bg-[#03ADE0] flex-auto text-[#FDFEFF] bg-opacity-80">
+       <div className="min-w-44 p-4 text-right text-[4vh] mt-12 font-bold">
         <span>About us</span>
        </div>
-       <div className=" md:w-[37vw] py-5 pl-3 pr-1 text-left text-[2.1vh] font-medium">
+       <div className="min-w-48 py-5 pl-3 pr-1 text-left text-[2.1vh] font-medium">
         <p>
          At Smile Prime Dental Clinic, we believe in creating more than just
          beautiful smiles; we strive to foster lasting relationships built on
