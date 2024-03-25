@@ -26,7 +26,7 @@ const Home = () => {
            Make Appointment
           </button>
          </div>
-         <div className="col absolute bottom-0 right-0 ">
+         <div className="col bottom-0 right-0 ">
           <DoctorIMG />
          </div>
         </div>
