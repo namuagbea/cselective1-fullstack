@@ -4,31 +4,46 @@ import Services from '../Components/Services.jsx';
 import About from '../Components/About.jsx';
 import Contact from '../Components/Contact.jsx';
 import Home from '../Components/Home.jsx';
+import Login from '../Components/Login.jsx';
+import { useState  } from 'react';
 
-const LandingPage = () => {
-    return (
-     <>
-      <div className="bg-[#F1F9FC]">
-       <div className="h-[108vh] ">
-        <MenuBar />
-        <Home />
-       </div>
-       <div></div>
+export default function LandingPage() {
+        const [isLoginOpen, setIsLoginOpen] = useState(false);
+    
+        const handleOpenLogin = () => {
+        setIsLoginOpen(true);
+        };
+    
+        const handleCloseLogin = () => {
+        setIsLoginOpen(false);
+        };
 
-       <div className="">
-        <About />
-       </div>
+        return (
+            <>
+            <div className="bg-[#F1F9FC]">
+            <div className="h-[108vh] ">
+                <MenuBar onLoginClick={handleOpenLogin}/>
+                {isLoginOpen && <Login onClose={handleCloseLogin} />}
+                <Home />
+            </div>
+            <div></div>
+    
+            <div className="">
+                <About />
+            </div>
+    
+            <div>
+                <Services />
+            </div>
+    
+            <div>
+                <Contact />
+            </div>
+            </div>
+            </>
+        );
 
-       <div>
-        <Services />
-       </div>
-
-       <div>
-        <Contact />
-       </div>
-      </div>
-     </>
-    );
-}
-
-export default LandingPage
+    }
+//     const LandingPage = () => {
+        
+// }

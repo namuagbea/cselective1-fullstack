@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import DentalLogo from './DentalLogo';
 
-
-const MenuBar = () => {
+const MenuBar = ({ onLoginClick }) => {
 
   return (
     <nav>
@@ -23,16 +22,14 @@ const MenuBar = () => {
                 <Link to="Services">
                   <li className='cursor-pointer'>Services</li>
                 </Link>
-                <Link to=" Contact">
+                <Link to="Contact">
                   <li className='cursor-pointer'>Contacts</li>
                 </Link>
               </ul>
             </div>
-            <Link>
-              <button className="bg-[#1E456A] text-[#F1F9FC] px-9 py-2 ml-8 text-[18px] rounded-2xl">
+            <button onClick={onLoginClick} className="bg-[#1E456A] text-[#F1F9FC] px-9 py-2 ml-8 text-[18px] rounded-2xl">
                 Login
               </button>
-            </Link>
           </div>
         </div>
 

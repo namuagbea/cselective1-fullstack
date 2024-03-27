@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import loginPhoto from './media/login-photo.png';
-import SignUp from './SignUp';
+import loginPhoto from '../../media/login-photo.png';
+import SignUp from '../Components/SignUp.jsx';
 
 const Login = ({ onClose }) => {
   const [username, setUsername] = useState('');
