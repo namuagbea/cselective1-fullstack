@@ -16,10 +16,10 @@ const About = () => {
                     </span>
                 </div>
             </div>
-            <div className="mx-20 mt-8 object-cover">
+            <div className="mx-20 mt-8 object-fill">
                 <ClinicIMG />
             </div>
-            <div className="mt-[-14px] ">
+            <div className="mt-[-12vh] float-right relative">
                 <AboutCard />
             </div>
         </div>

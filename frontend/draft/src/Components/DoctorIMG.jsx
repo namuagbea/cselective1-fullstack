@@ -2,12 +2,12 @@ import React from 'react'
 
 const DoctorIMG = () => {
   return (
-   <div className="object-cover h-full w-full overflow-visible">
-    <img
+    
+    <img className='h-[81vh] w-[85vw] object-none object-left-bottom  '
      src="https://github.com/namuagbea/cselective1-fullstack/blob/main/frontend/draft/media/Doctor.png?raw=true"
      alt=""
     />
-   </div>
+
   );
 } 
 
