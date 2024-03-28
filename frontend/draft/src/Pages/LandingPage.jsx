@@ -11,7 +11,9 @@ export default function LandingPage() {
         const [isLoginOpen, setIsLoginOpen] = useState(false);
     
         const handleOpenLogin = () => {
+            
         setIsLoginOpen(true);
+        
         };
     
         const handleCloseLogin = () => {
@@ -23,7 +25,14 @@ export default function LandingPage() {
             <div className="bg-[#F1F9FC]">
             <div className="h-[108vh] ">
                 <MenuBar onLoginClick={handleOpenLogin}/>
-                {isLoginOpen && <Login onClose={handleCloseLogin} />}
+                        {isLoginOpen && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center">
+                                <div className="absolute inset-0 bg-white opacity-50"></div>
+                                <div className="bg-white z-50 p-4 rounded shadow-lg">
+                                    <Login onClose={handleCloseLogin} />
+                                </div>
+                            </div>
+                        ) }
                 <Home />
             </div>
             <div></div>
