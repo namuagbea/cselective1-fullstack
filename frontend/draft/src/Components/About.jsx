@@ -19,7 +19,7 @@ const About = () => {
             <div className="mx-20 mt-8 object-cover">
                 <ClinicIMG />
             </div>
-            <div className="mt-[-14px] ">
+            <div className="mt-[-12vh] absolute right-[-3vh] ">
                 <AboutCard />
             </div>
         </div>
