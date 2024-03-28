@@ -21,7 +21,7 @@ const Home = () => {
 
    
     return (
-        <div className="overflow-hidden">
+        <div className="">
             <div>
                 <MenuBar onLoginClick={handleOpenLogin} />
                 {isLoginOpen && (
@@ -34,8 +34,8 @@ const Home = () => {
                 )}
             </div>
             
-            <div className="row flex overflow-visible">
-                <div className="col w-full">
+            <div className="row flex">
+                <div className="">
                     <div className="mx-24 mt-44">
                         <h2 className="text-3xl font-bold ">
                             Your
@@ -60,7 +60,7 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-                <div className="w-full h-full object-cover float-right">
+                <div className="w-full pt-10 right-2">
                     <DoctorIMG />
                 </div>
             </div>
