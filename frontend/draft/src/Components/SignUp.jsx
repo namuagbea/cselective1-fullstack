@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import signupPhoto from '../../media/signup-photo.png';
 import Login from '../Components/Login.jsx';
+import axios from 'axios';
 
 const SignUp = ({ onClose }) => {
   const [username, setUsername] = useState('');
