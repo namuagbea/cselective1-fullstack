@@ -1,5 +1,5 @@
 import React from 'react'
-import MenuBar from '../Components/MenubarV2'
+import MenuBar from '../../Components/MenubarV2'
 
 const MyBooking = () => {
   return (

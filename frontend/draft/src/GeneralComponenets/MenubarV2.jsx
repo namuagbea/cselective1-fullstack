@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-scroll";
-import DentalLogo from "./DentalLogo";
+import DentalLogo from "../Pages/LandingPage/Components/DentalLogo";
 
 const MenuBar = () => {
     const content = (

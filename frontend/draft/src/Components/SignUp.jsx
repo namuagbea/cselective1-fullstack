@@ -123,3 +123,4 @@ const SignUp = ({ onClose }) => {
 };
 
 export default SignUp;
+
