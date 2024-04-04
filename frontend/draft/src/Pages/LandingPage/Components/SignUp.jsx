@@ -28,7 +28,7 @@ const SignUp = ({ onClose }) => {
   return (
     <div className='fixed inset-0 flex items-center justify-center '>
       <div className='flex w-full shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden'>
-        <div className='w-3/5 h-[80vh] bg-white'>
+        <div className='w-3/5 min-h-min bg-white'>
           <img src='https://github.com/namuagbea/cselective1-fullstack/blob/main/frontend/draft/media/signup-photo.png?raw=true' alt="SignUp" className="object-cover min-w-full min-h-min mt-16 mr-2" />
         </div>
 

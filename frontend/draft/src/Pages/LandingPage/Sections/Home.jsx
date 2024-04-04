@@ -58,7 +58,7 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-                <div className="w-full pt-10 right-0">
+                <div className="min-w-min top-0 right-0 ">
                     <DoctorIMG />
                 </div>
             </div>

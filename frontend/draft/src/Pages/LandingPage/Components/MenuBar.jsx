@@ -37,7 +37,7 @@ const MenuBar = ({ onLoginClick }) => {
   return (
     <div>
       <nav>
-        <div className="h-10vh z-50 flex justify-between px-6 lg:py-5 py-4 bg-[#F1F9FC]">
+        <div className="h-10vh z-50 min-h-min flex justify-between px-6 lg:py-5 py-4 bg-[#F1F9FC]">
           <div className="flex items-center flex-1 m-3">
             <DentalLogo />
             <span className="text-3xl font-bold ml-2 mt-1">Smile Prime</span>

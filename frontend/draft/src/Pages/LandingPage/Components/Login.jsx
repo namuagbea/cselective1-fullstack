@@ -19,8 +19,8 @@ const Login = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center col">
-      <div className="flex w-full shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden">
-        <div className="w-3/5 h-[80vh] bg-white">
+      <div className="flex min-w-min shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden">
+        <div className="w-3/5 min-h-min bg-white">
           <img src='https://github.com/namuagbea/cselective1-fullstack/blob/main/frontend/draft/media/login-photo.png?raw=true' alt="Login" className="object-cover min-w-full min-h-min mt-16 mr-2" />
         </div>
         <div className="w-2/3 flex-col bg-[#30689E]">
