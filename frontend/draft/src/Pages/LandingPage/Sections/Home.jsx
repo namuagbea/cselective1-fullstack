@@ -1,10 +1,8 @@
 import React from "react";
-import DoctorIMG from "./DoctorIMG";
-import MenuBar from "./MenuBar.jsx";
-import Login from "./Login.jsx";
+import DoctorIMG from "../Components/DoctorIMG";
 import { useState } from 'react';
-
-
+import MenuBar from "../Components/MenuBar";
+import Login from "../Components/Login";
 
 const Home = () => {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -21,7 +19,7 @@ const Home = () => {
 
    
     return (
-        <div className="">
+        <div className="bg-[#F1F9FC]" id="home">
             <div>
                 <MenuBar onLoginClick={handleOpenLogin} />
                 {isLoginOpen && (
@@ -33,7 +31,7 @@ const Home = () => {
                     </div>
                 )}
             </div>
-            
+
             <div className="row flex">
                 <div className="">
                     <div className="mx-24 mt-44">
@@ -60,7 +58,7 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-                <div className="w-full pt-10 right-2">
+                <div className="w-full pt-10 right-0">
                     <DoctorIMG />
                 </div>
             </div>

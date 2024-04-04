@@ -1,10 +1,10 @@
 import React from 'react'
-import ClinicIMG from './ClinicIMG';
-import AboutCard from './AboutCard';
+import ClinicIMG from '../Components/ClinicIMG';
+import AboutCard from '../Components/AboutCard';
 
 const About = () => {
     return (
-        <div className="bg-[#224F79] h-[1050px]">
+        <div className="bg-[#224F79] h-[1050px]" id='about'>
             <div className="pt-20 ml-20 font-bold text-[40px] ">
                 <div className="">
                     <span className="text-[#F1F9FC]">Welcome to</span>
@@ -19,7 +19,7 @@ const About = () => {
             <div className="mx-20 mt-8 object-fill">
                 <ClinicIMG />
             </div>
-            <div className="mt-[-12vh] float-right relative">
+            <div className="mt-[-12vh] float-right ">
                 <AboutCard />
             </div>
         </div>
