@@ -27,12 +27,12 @@ const SignUp = ({ onClose }) => {
 
   return (
     <div className='fixed inset-0 flex items-center justify-center '>
-      <div className='flex w-full shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden'>
-        <div className='w-3/5 min-h-min bg-white'>
-          <img src='https://github.com/namuagbea/cselective1-fullstack/blob/main/frontend/draft/media/signup-photo.png?raw=true' alt="SignUp" className="object-cover min-w-full min-h-min mt-16 mr-2" />
+      <div className='flex min-h-min shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden'>
+        <div className='w-3/5 bg-white'>
+          <img src='../../../../media/signup-photo.png' alt="SignUp" className="w-full h-full" />
         </div>
 
-        <div className='w-2/3 flex-col bg-[#30689E]'>
+        <div className=' bg-[#30689E]'>
           <div className='float-right pr-3 pt-3'>
             <button onClick={onClose} className=" text-white hover:text-sky-200 p-2 focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,8 +41,8 @@ const SignUp = ({ onClose }) => {
             </button>
           </div>
           {/* Form start */}
-          <form>
-            <div className='pt-14'>
+          <form className=''>
+            <div className='flex w-full flex-col'>
               <h2 className="text-[2rem] font-semibold text-center mb-2 text-white">Sign up</h2>
               <div className='px-14 mt-2'>
                 <div>
@@ -58,12 +58,6 @@ const SignUp = ({ onClose }) => {
                     required
                   />
 
-
-                  <div>
-                    <div>
-                      Please Enter your Username.
-                    </div>
-                  </div>
                 </div>
 
                 <div className='mb-4 mt-2'>

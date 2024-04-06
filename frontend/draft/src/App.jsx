@@ -6,10 +6,10 @@ import LandingPage from './Pages/LandingPage/LandingPage.jsx';
 
 export default function App() {
   return (
-    <>
+    <div>
       <LandingPage />
 
 
-    </>
+    </div>
   );
 }
