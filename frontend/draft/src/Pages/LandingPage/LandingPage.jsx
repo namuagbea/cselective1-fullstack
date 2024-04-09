@@ -8,27 +8,16 @@ export default function LandingPage() {
 
 
         return (
-            <div className='h-screen md:h-svh'>
+            <div className=''>
                 
 
-               
-       
-               <div>
                     <Home />
 
-               </div>
-               <div>
                     <About />
 
-               </div>
-               <div>
                     <Services />
-
-               </div>
-               <div>
                     <Contact />
 
-               </div>
                     
                     
                     

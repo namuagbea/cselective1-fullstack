@@ -38,13 +38,13 @@ const MenuBar = ({ onLoginClick }) => {
 
   return (
     
-      <div className="z-50 flex justify-between px-6 h-24 lg:py-5 md:px-7 w-full ">
-        <div className="flex items-center flex-1">
+      <div className="lg:z-50 flex justify-between md:justify-between lg:px-6 lg:h-24 lg:py-5  lg:w-full ">
+        <div className="flex items-center flex-1 ">
           <DentalLogo />
-          <span className="text-3xl font-bold ml-2 mt-1">Smile Prime</span>
-          <div className="lg:flex md:flex lg:flex-1 items-center justify-end hidden">
+          <span className="lg:text-3xl font-bold mt-1 md:text-xl ">Smile Prime</span>
+          <div className="lg:flex md:flex md:flex-1 lg:flex-1 items-center justify-end hidden">
             <div className="flex-10 ">
-              <ul className="text-lg font-normal flex gap-8 text-[18px]">
+              <ul className="font-normal flex lg:gap-8 md:gap-6 lg:text-[18px] md:text-[14px]">
                 <Link smooth to="home">
                   <li className='cursor-pointer hover:text-cyan-950 transition border-b-2 hover:border-fuchsia-100 ' onClick={closeMenu}>Home</li>
                 </Link>
@@ -68,7 +68,7 @@ const MenuBar = ({ onLoginClick }) => {
           {click && NavbarContents}
 
         </div>
-        <button className='block md:hidden transition' onClick={MenuCLick}>
+        <button className='block md:hidden transition mr-4' onClick={MenuCLick}>
           {click ? <FaTimes /> : <CiMenuFries />}
         </button>
 
