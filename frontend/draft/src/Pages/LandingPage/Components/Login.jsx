@@ -6,12 +6,29 @@ const Login = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [showSignUp, setShowSignUp] = useState(false);
 
-  const handleLogin = () => {
-    console.log("Username:", username);
-    console.log("Password:", password);
-
-    onClose();
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      if (response.ok) {
+        console.log("Login successful")
+        // Token storage here
+        onClose();
+      } else {
+        const errorData = await response.json();
+        console.error('Login failed:', errorData);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
   };
+  
 
   const handleSignUpClick = () => {
     setShowSignUp(true);
