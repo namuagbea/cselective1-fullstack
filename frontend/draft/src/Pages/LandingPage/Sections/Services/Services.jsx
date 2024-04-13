@@ -10,14 +10,14 @@ import Tooth from './Components/Tooth.jsx';
 import Whitening from './Components/Whitening.jsx';
 const Services = () => {
   return (
-    <div className=" bg-[#F1F9FC] h-full w-full" id='services' >
-      <div className='flex flex-row'>
+    <div className="bg-[#F1F9FC] h-full w-full sm:h-full" id='services' >
+      <div className='lg:flex-row flex md:flex-row  '>
 
         {/* SERVICES CARDS */}
 
         {/* 1st row */}
-        <div className='flex flex-col pl-16 py-16 gap-y-8'>
-          <div className='flex h-[400px] flex-row gap-10'>
+        <div className='flex lg:flex-col md:flex-col sm:flex-col lg:pl-16 md:pl-12 sm:pl-7 lg:py-16 md:py-10 sm:py-6 lg:gap-y-8 md:gap-y-5 sm:gap-y-2'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-3'>
             <div>
               <Braces />
             </div>
@@ -28,7 +28,7 @@ const Services = () => {
 
           {/* 2nd row */}
 
-          <div className='flex h-[400px] flex-row gap-10'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-3'>
             <div>
               <Anterior />
             </div>
@@ -39,7 +39,7 @@ const Services = () => {
 
           {/* 3rd row */}
 
-          <div className='flex h-[400px] flex-row gap-10'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-3'>
             <div>
               <Prophylaxis />
             </div>
@@ -50,7 +50,7 @@ const Services = () => {
 
           {/* 4th row */}
 
-          <div className='flex h-[400px] flex-row gap-10'>
+          <div className='flex md:flex-row  sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-2'>
             <div>
               <Closure />
             </div>
@@ -63,21 +63,21 @@ const Services = () => {
         {/* iLLUSTRATIONS */}
         <div className='flex flex-col content-start h-auto w-full justify-content-center place-content-center'>
           <div className=''>
-            <img className='w-96  float-end' src={Illustration} alt="illustration" />
+            <img className='lg:w-96 md:w-60 sm:w-56  float-end' src={Illustration} alt="illustration" />
           </div>
           {/* Wordings */}
-          <div className='text-[54px] text-center p-28'>
+          <div className='lg:text-[54px]  sm:text-[40px] text-center lg:p-28  sm:py-20 sm:pl-[80px] sm:pr-[20px]'>
             <div>
               <h1 className='font-bold text-[#00B3DE]'>Our <span className='text-[#1E456A]'>Services</span></h1>
             </div>
             <div>
-              <p className='text-[23px] text-left font-medium leading-7 pl-3'>From routine cleanings and preventive care to advanced procedures such as dental implants and orthodontics, we offer a comprehensive range of services to address all your dental needs under one roof. Using the latest technology and techniques, we ensure that you receive the highest standard of care with minimal discomfort and downtime.</p>
+              <p className='lg:text-[23px] sm:text-[16px] text-left font-medium lg:leading-7 sm:leading-5 lg:pl-3'>From routine cleanings and preventive care to advanced procedures such as dental implants and orthodontics, we offer a comprehensive range of services to address all your dental needs under one roof. Using the latest technology and techniques, we ensure that you receive the highest standard of care with minimal discomfort and downtime.</p>
             </div>
             
           </div>
           {/* Illustration */}
-          <div className=' align-bottom'>
-            <img className='w-96 float-end' src={Illustration} alt="illustration" />
+          <div className='align-bottom'>
+            <img className='lg:w-96 md:w-60 sm:w-56  float-end' src={Illustration} alt="illustration" />
 
           </div>
 
