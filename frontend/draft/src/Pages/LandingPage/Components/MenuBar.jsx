@@ -59,7 +59,7 @@ const MenuBar = ({ onLoginClick }) => {
                 </Link>
               </ul>
             </div>
-            <button onClick={onLoginClick} className="bg-[#1E456A] text-[#F1F9FC] px-9 py-2 ml-8 text-[18px] rounded-2xl">
+            <button onClick={onLoginClick} className="bg-[#1E456A] text-[#F1F9FC] px-9 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl">
               Login
             </button>
           </div>

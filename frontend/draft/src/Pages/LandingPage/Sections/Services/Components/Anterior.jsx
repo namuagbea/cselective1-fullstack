@@ -3,7 +3,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Anterior = () => {
   return (
-    <div className='bg-[#8D91FF] lg:w-[270px] md:w-[200px]  md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+    <div className='bg-[#8D91FF] lg:h-[350px] lg:w-[270px] md:w-[200px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
       <div className='font-bold px-4'>
         <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Anterior Fixed Bridge & Veneers</h2>
       </div>
