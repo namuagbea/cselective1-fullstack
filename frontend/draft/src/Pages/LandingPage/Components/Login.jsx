@@ -5,28 +5,33 @@ const Login = ({ onClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showSignUp, setShowSignUp] = useState(false);
-
-  const handleLogin = () => {
-    console.log("Username:", username);
-    console.log("Password:", password);
-
-    onClose();
-  };
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignUpClick = () => {
     setShowSignUp(true);
     
   };
 
+  const handleLogin = () => {
+    if (!username || !password) {
+      setErrorMessage("Please fill in both fields.");
+      return;
+    }
+
+    console.log("Username:", username);
+    console.log("Password:", password);
+
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center col">
       <div className="flex min-h-min shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden">
         <div className="w-3/5 bg-white">
-          <img src='../../../../media/login-photo.png' alt="Login" className="w-full h-full" />
+          <img src='../../../../media/login-photo.png' alt="Login" className="relative" />
         </div>
         <div className=" bg-[#30689E]">
-          <div className='float-end pr-3 pt-3'>
+          <div className='float-end pr-4 pt-3'>
             <button onClick={onClose} className=" text-white hover:text-sky-200 p-2 focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -62,10 +67,16 @@ const Login = ({ onClose }) => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className='my-3'>
-                  <span className="text-sm text-white cursor-pointer">Forgot password?</span>
 
+                <div className='my-2'>
+                  <span className="text-sm text-white cursor-pointer">Forgot password?</span>
                 </div>
+
+                {errorMessage && (
+                  <div className="text-sm text-red-500 mb-3">
+                    {errorMessage}
+                  </div>
+                )}
 
                 <button onClick={handleLogin} className="text-white bg-sky-900 hover:bg-sky-800 px-4 py-2 rounded-md mb-4 w-full">Login</button>
                 <div className="text-sm text-center flex items-center justify-center opacity-85 ">
@@ -78,12 +89,8 @@ const Login = ({ onClose }) => {
                 </div>
                 {showSignUp && <SignUp onClose={onClose} />}
               </div>
-              
             </div>
-
           </div>
-
-          
         </div>
       </div>
     </div>

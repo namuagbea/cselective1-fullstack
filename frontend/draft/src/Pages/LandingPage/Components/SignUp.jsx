@@ -8,6 +8,10 @@ const SignUp = ({ onClose }) => {
   const [retypepass, setRetypePass] = useState('');
   const [showLogin, setShowLogin] = useState(false);
 
+  const handleLoginClick = () => {
+    setShowLogin(true);
+  };
+
   const handleSignUp = () => {
     console.log("Username:", username);
     console.log("Email:", email);
@@ -15,10 +19,6 @@ const SignUp = ({ onClose }) => {
     console.log("Retype Password:", retypepass);
 
     onClose();
-  };
-
-  const handleLoginClick = () => {
-    setShowLogin(true);
   };
 
   if (showLogin) {
@@ -29,7 +29,7 @@ const SignUp = ({ onClose }) => {
     <div className='fixed inset-0 flex items-center justify-center '>
       <div className='flex min-h-min shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden'>
         <div className='w-3/5 bg-white'>
-          <img src='../../../../media/signup-photo.png' alt="SignUp" className="w-full h-full" />
+          <img src='../../../../media/signup-photo.png' alt="SignUp" className="relative" />
         </div>
 
         <div className=' bg-[#30689E]'>
