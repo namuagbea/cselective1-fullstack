@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Login from "../Components/Login.jsx";
+import signupPhoto from '../../../../media/signup-photo.png';
 
 const SignUp = ({ onClose }) => {
   const [username, setUsername] = useState("");
@@ -57,7 +58,7 @@ const SignUp = ({ onClose }) => {
       <div className="flex min-h-min shadow-lg sm:w-3/4 lg:w-2/3 rounded-[2vh] overflow-hidden">
         <div className="w-3/5 bg-white">
           <img
-            src="../../../../media/signup-photo.png"
+            src={signupPhoto}
             alt="SignUp"
             className="w-full h-full"
           />
