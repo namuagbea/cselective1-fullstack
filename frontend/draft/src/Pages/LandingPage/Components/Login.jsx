@@ -38,7 +38,7 @@ const Login = ({ onClose }) => {
 
 
   return (
-    <div className="fixed inset-0 flex items-center sm:px-7 justify-center col">
+    <div className="fixed inset-0 flex items-center sm:px-7 justify-center flex-col">
       <div className="flex lg:h-[80vh] md:h-[60vh] sm:h-[55vh] shadow-lg rounded-[2vh] overflow-hidden">
 
         {/* 1st col */}
@@ -61,9 +61,8 @@ const Login = ({ onClose }) => {
           {/* Form */}
           <div className='flex w-full flex-col'>
             <h2 className="lg:text-[2rem] md:text-[30px] sm:text-[25px] mt-5 lg:mt-12 font-semibold text-center text-white">Welcome!</h2>
-
+            
             <div className='lg:px-14 md:px-10 sm:px-8 mt-2'>
-              <div className="">
                 <div className='my-1 lg:mt-6 flex flex-col sm:gap-1 md:gap-2 lg:gap-3'>
                   <div>
                     <label className="lg:text-base md:text-[15px] sm:text-[13px] text-white font-normal " htmlFor="username">
@@ -114,7 +113,6 @@ const Login = ({ onClose }) => {
                   <span className="lg:text-sm sm:text-[10px] md:text-[12px] opacity-85 text-white cursor-pointer" onClick={handleSignUpClick}>Sign Up</span>
                 </div>
                 {showSignUp && <SignUp onClose={onClose} />}
-              </div>
 
             </div>
 
