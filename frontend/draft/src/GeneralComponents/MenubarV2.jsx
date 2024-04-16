@@ -49,13 +49,6 @@ const MenuBar = () => {
          <Link>
           <button className="bg-[#1E456A] text-[#F1F9FC] px-9 py-2 ml-8 text-[18px] rounded-2xl">
            Login
-           <span>
-            <img
-             src="https://tecdn.b-cdn.net/img/new/avatars/2.webp"
-             className="rounded-full"
-             alt=""
-            />
-           </span>
           </button>
          </Link>
         </div>
