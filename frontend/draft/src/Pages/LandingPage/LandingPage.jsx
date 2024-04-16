@@ -1,5 +1,5 @@
 import React from 'react'
-import Services from './Sections/Services/Services.jsx';
+import Services from './Sections/Services.jsx';
 import About from './Sections/About.jsx';
 import Contacts from './Sections/Contacts.jsx';
 import Home from './Sections/Home.jsx';
