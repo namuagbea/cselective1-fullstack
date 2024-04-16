@@ -1,5 +1,5 @@
 import React from 'react'
-import Illustration from '../../../../../media/BG1_services.png';
+import Illustration from '../../../../media/BG1_services.png';
 import { MdKeyboardArrowRight } from "react-icons/md";
 const Services = () => {
   return (

@@ -1,11 +1,11 @@
 import React from "react";
-import DoctorIMG from "../Components/DoctorIMG";
 import { useState } from "react";
-import MenuBar from "../Components/MenuBar";
+import MenuBar from "../../../GeneralComponenets/MenuBar.jsx";
 import Login from "../Components/Login";
 import Headroom from "react-headroom";
+import DoctorwithPage from '../../../../media/Doctor.png'
 import './Home.css';
-
+import MenubarV2 from '../../../GeneralComponenets/MenubarV2.jsx'
 const Home = () => {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
 
@@ -23,8 +23,7 @@ const Home = () => {
 
             <div className="bg-[#F1F9FC] w-full">
                 <Headroom className="headroom">
-                    <MenuBar onLoginClick={handleOpenLogin} />
-
+                    <MenubarV2 onLoginClick={handleOpenLogin} />
                 </Headroom>
             </div>
             {/* Login modal */}
@@ -66,7 +65,12 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="puff-in-center">
-                    <DoctorIMG />
+                    <div className='h-full w-full'>
+                        <img className="lg:rounded-[20vh] md:rounded-[16vh] sm:rounded-[10vh] overflow-hidden  "
+                            src={DoctorwithPage}
+                            alt=""
+                        />
+                    </div>                 
                 </div>
             </div>
 

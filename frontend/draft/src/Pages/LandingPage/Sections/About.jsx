@@ -1,5 +1,5 @@
 import React from 'react'
-import ClinicIMG from '../Components/ClinicIMG';
+import ClinicImage from '../../../../media/ClinicPicture.png';
 import AboutCard from '../Components/AboutCard';
 
 const About = () => {
@@ -17,7 +17,12 @@ const About = () => {
                 </div>
             </div>
             <div className="mx-20 mt-8 sm:mt-4 ">
-                <ClinicIMG />
+                <div className='h-full w-full'>
+                    <img className="lg:rounded-[20vh] md:rounded-[16vh] sm:rounded-[10vh] overflow-hidden  "
+                        src={ClinicImage}
+                        alt=""
+                    />
+                </div>
             </div>
             <div className="lg:mt-[-13vh] md:mt-[-10vh] sm:mt-[-8vh]">
                 <AboutCard />
