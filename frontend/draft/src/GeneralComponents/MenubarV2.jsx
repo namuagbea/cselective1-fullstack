@@ -74,7 +74,7 @@ const MenuBar = ({ onLoginClick }) => {
               </Link>
               <Link>
                 <li className="cursor-pointer" onClick={closeMenu}>
-                  My appointment
+                  My Appointments
                 </li>
               </Link>
             </ul>
