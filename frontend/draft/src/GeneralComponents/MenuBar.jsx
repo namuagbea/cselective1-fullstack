@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-scroll';
-import DentalLogo from '../Pages/LandingPage/Components/DentalLogo';
+import DentalLogo from '../Pages/LandingPage/Components/DentalLogo.jsx';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
 
