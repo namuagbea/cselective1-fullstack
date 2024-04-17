@@ -1,6 +1,6 @@
 import React from 'react'
-import MenuBar from '../../GeneralComponents/MenubarV2.jsx'
-import ClinicPictureDark from '../../../media/ClinicPictureDark.png'
+import MenuBar from '../../Components/MenubarV2'
+import ClinicPictureDark from '../../assets/ClinicPictureDark.png'
 
 const MyBooking = () => {
   return (
