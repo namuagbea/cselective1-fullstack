@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Login from "../Components/Login.jsx";
-import signupPhoto from '../../../../media/signup-photo.png';
+import signupPhoto from "../../../../media/signup-photo.png";
 
 const SignUp = ({ onClose }) => {
   const [username, setUsername] = useState("");
@@ -47,7 +47,7 @@ const SignUp = ({ onClose }) => {
 
   const handleLoginClick = () => {
     setShowLogin(true);
-};
+  };
 
   if (showLogin) {
     return <Login onClose={() => setShowLogin(false)} />;
@@ -56,20 +56,13 @@ const SignUp = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center sm:px-7 justify-center ">
       <div className="flex lg:h-[80vh] md:h-[60vh] sm:h-[55vh] shadow-lg  rounded-[2vh] overflow-hidden">
-
         {/* 1st col */}
         <div className=" bg-white">
-          <img
-            src={signupPhoto}
-            alt="SignUp"
-            className="w-full h-full"
-          />
+          <img src={signupPhoto} alt="SignUp" className="w-full h-full" />
         </div>
-
 
         {/* 2nd */}
         <div className=" bg-[#30689E]">
-
           {/* close button */}
           <div className="float-right pr-3 pt-3">
             <button
@@ -92,7 +85,6 @@ const SignUp = ({ onClose }) => {
               </svg>
             </button>
           </div>
-
 
           {/* Form start */}
           <form className="" onSubmit={handleSignUp}>
@@ -177,7 +169,6 @@ const SignUp = ({ onClose }) => {
                   Sign up
                 </button>
 
-
                 {/* Already have an account section */}
 
                 <div className="lg:text-sm md:text-[12px] sm:text-[10px] md:mt-4 text-center flex opacity-90 items-center justify-center">
@@ -188,8 +179,6 @@ const SignUp = ({ onClose }) => {
                   <hr className="flex-grow border-gray-300 border-t ml-2" />
                 </div>
 
-
-                
                 {/* Login */}
                 <div className="text-center">
                   <span
