@@ -1,8 +1,9 @@
 import React from 'react'
+import Footer from '../../../GeneralComponents/Footer.jsx';
 
 const Contacts = () => {
   return (
-    <div className="h-full w-full bg-[#224F79] text-[#F1F9FC] flex lg:place-items-center lg:justify-center" id='contact' >
+    <div className="h-full w-full bg-[#224F79] text-[#F1F9FC] flex flex-col lg:place-items-center lg:justify-center" id='contact' >
       
       {/* container */}
       <div className='flex flex-row lg:w-[85vw] lg:h-[450px] md:h-[400px] sm:h-[350px] lg:my-44 md:my-[90px] sm:my-20'>
@@ -42,6 +43,7 @@ const Contacts = () => {
   
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
