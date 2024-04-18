@@ -40,7 +40,7 @@ const MenuBar = ({ onLoginClick }) => {
   );
 
   return (
-    <div className="lg:z-50 flex justify-between md:justify-between lg:px-6 lg:h-24 lg:py-5  lg:w-full ">
+    <div className="lg:z-50 flex justify-between md:justify-between lg:px-6 lg:h-24 lg:py-5 lg:w-full text-white ">
       <div className="flex items-center flex-1 ">
         <DentalLogo />
         <span className="lg:text-3xl font-bold mt-1 md:text-xl ">
@@ -81,7 +81,7 @@ const MenuBar = ({ onLoginClick }) => {
           </div>
           <button
             onClick={onLoginClick}
-            className="bg-[#1E456A] text-[#F1F9FC] px-9 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
+            className="bg-[#00B3DE] text-[#F1F9FC] px-9 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
           >
             Login
           </button>
