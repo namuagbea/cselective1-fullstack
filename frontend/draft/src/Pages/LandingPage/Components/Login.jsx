@@ -113,12 +113,6 @@ const Login = ({ onClose }) => {
                   </span>
                 </div>
 
-                <div className="">
-                  <span className="lg:text-sm md:text-[11px] sm:text-[10px] text-white cursor-pointer">
-                    Forgot password?
-                  </span>
-                </div>
-
                 {/* Login button */}
                 <button
                   onClick={handleLogin}

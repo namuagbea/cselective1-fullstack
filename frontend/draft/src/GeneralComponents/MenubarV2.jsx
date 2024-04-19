@@ -58,22 +58,22 @@ const MenuBar = ({ onLoginClick }) => {
                   Home
                 </li>
               </Link>
-              <Link to="about">
+              <Link to="/">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   About
                 </li>
               </Link>
-              <Link to="services">
+              <Link to="/">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   Services
                 </li>
               </Link>
-              <Link to="contact">
+              <Link to="/">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   Contacts
                 </li>
               </Link>
-              <Link>
+              <Link to="/MyAppointments">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   My Appointments
                 </li>
