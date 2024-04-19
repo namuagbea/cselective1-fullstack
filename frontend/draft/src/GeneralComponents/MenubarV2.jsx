@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 import DentalLogo from "../Pages/LandingPage/Components/DentalLogo";
 import { FaTimes } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
+import "react-router-dom";
 
 const MenuBar = ({ onLoginClick }) => {
   const [click, setClick] = useState(false);
@@ -49,7 +50,7 @@ const MenuBar = ({ onLoginClick }) => {
         <div className="lg:flex md:flex md:flex-1 lg:flex-1 items-center justify-end hidden">
           <div className="flex-10 ">
             <ul className="font-normal flex lg:gap-8 md:gap-6 lg:text-[18px] md:text-[14px]">
-              <Link smooth to="home">
+              <Link to="/">
                 <li
                   className="cursor-pointer hover:text-cyan-950 transition border-b-2 hover:border-fuchsia-100 "
                   onClick={closeMenu}
@@ -57,17 +58,17 @@ const MenuBar = ({ onLoginClick }) => {
                   Home
                 </li>
               </Link>
-              <Link smooth to="about">
+              <Link to="about">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   About
                 </li>
               </Link>
-              <Link smooth to="services">
+              <Link to="services">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   Services
                 </li>
               </Link>
-              <Link smooth to="contact">
+              <Link to="contact">
                 <li className="cursor-pointer" onClick={closeMenu}>
                   Contacts
                 </li>
@@ -83,7 +84,7 @@ const MenuBar = ({ onLoginClick }) => {
             onClick={onLoginClick}
             className="bg-[#00B3DE] text-[#F1F9FC] px-9 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
           >
-            Login
+            Lea
           </button>
         </div>
       </div>
