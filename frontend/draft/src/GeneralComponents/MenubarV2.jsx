@@ -1,44 +1,44 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DentalLogo from "../Pages/LandingPage/Components/DentalLogo";
-import { FaTimes } from "react-icons/fa";
-import { CiMenuFries } from "react-icons/ci";
+// import { FaTimes } from "react-icons/fa";
+// import { CiMenuFries } from "react-icons/ci";
 import "react-router-dom";
 
 const MenuBar = ({ onLoginClick }) => {
-  const [click, setClick] = useState(false);
-  const MenuCLick = () => {
-    setClick(!click);
-  };
-  const closeMenu = () => setClick(false);
+  // const [click, setClick] = useState(false);
+  // const MenuCLick = () => {
+  //   setClick(!click);
+  // };
+  // const closeMenu = () => setClick(false);
 
-  //navigation reponsive
-  const NavbarContents = (
-    <div className="lg:hidden block absolute top-28 w-full left-0 right-0 bg-slate-700 transition">
-      <ul className="text-center text-lg p-20">
-        <Link spy smooth to="home">
-          <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-            Home
-          </li>
-        </Link>
-        <Link spy smooth to="about">
-          <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-            About
-          </li>
-        </Link>
-        <Link spy smooth to="services">
-          <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-            Services
-          </li>
-        </Link>
-        <Link spy smooth to="contact">
-          <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-            Contacts
-          </li>
-        </Link>
-      </ul>
-    </div>
-  );
+  // //navigation reponsive
+  // const NavbarContents = (
+  //   <div className="lg:hidden block absolute top-28 w-full left-0 right-0 bg-slate-700 transition">
+  //     <ul className="text-center text-lg p-20">
+  //       <Link spy smooth to="home">
+  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
+  //           Home
+  //         </li>
+  //       </Link>
+  //       <Link spy smooth to="about">
+  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
+  //           About
+  //         </li>
+  //       </Link>
+  //       <Link spy smooth to="services">
+  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
+  //           Services
+  //         </li>
+  //       </Link>
+  //       <Link spy smooth to="contact">
+  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
+  //           Contacts
+  //         </li>
+  //       </Link>
+  //     </ul>
+  //   </div>
+  // );
 
   return (
     <div className="lg:z-50 flex justify-between md:justify-between lg:px-6 lg:h-24 lg:py-5 lg:w-full text-white ">
@@ -53,45 +53,44 @@ const MenuBar = ({ onLoginClick }) => {
               <Link to="/">
                 <li
                   className="cursor-pointer hover:text-cyan-950 transition border-b-2 hover:border-fuchsia-100 "
-                  onClick={closeMenu}
+                  // onClick={closeMenu}
                 >
                   Home
                 </li>
               </Link>
               <Link to="/">
-                <li className="cursor-pointer" onClick={closeMenu}>
+                <li className="cursor-pointer" >
                   About
                 </li>
               </Link>
               <Link to="/">
-                <li className="cursor-pointer" onClick={closeMenu}>
+                <li className="cursor-pointer">
                   Services
                 </li>
               </Link>
               <Link to="/">
-                <li className="cursor-pointer" onClick={closeMenu}>
+                <li className="cursor-pointer">
                   Contacts
                 </li>
               </Link>
               <Link to="/MyAppointments">
-                <li className="cursor-pointer" onClick={closeMenu}>
+                <li className="cursor-pointer">
                   My Appointments
                 </li>
               </Link>
             </ul>
           </div>
           <button
-            onClick={onLoginClick}
             className="bg-[#00B3DE] text-[#F1F9FC] px-9 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
           >
             Lea
           </button>
         </div>
       </div>
-      <div>{click && NavbarContents}</div>
+      {/* <div>{click && NavbarContents}</div>
       <button className="block md:hidden transition mr-4" onClick={MenuCLick}>
         {click ? <FaTimes /> : <CiMenuFries />}
-      </button>
+      </button> */}
     </div>
   );
 };

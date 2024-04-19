@@ -7,31 +7,31 @@ import { CiMenuFries } from 'react-icons/ci';
 
 
 const MenuBar = ({ onLoginClick }) => {
-  const [click, setClick] = useState(false)
-  const MenuCLick = () => {
-    setClick(!click)
-  }
-  const closeMenu = () => setClick(false)
+  // const [click, setClick] = useState(false)
+  // const MenuCLick = () => {
+  //   setClick(!click)
+  // }
+  // const closeMenu = () => setClick(false)
 
-  //navigation reponsive 
-  const NavbarContents =
-    <div className='lg:hidden block absolute top-28 w-full left-0 right-0 bg-slate-700 transition'>
-      <ul className='text-center text-lg p-20'>
-        <Link spy smooth to="home" >
-          <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>Home</li>
-        </Link>
-        <Link spy smooth to="about">
-          <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>About</li>
-        </Link>
-        <Link spy smooth to="services">
-          <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>Services</li>
-        </Link>
-        <Link spy smooth to="contact">
-          <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>Contacts</li>
-        </Link>
+  // //navigation reponsive 
+  // const NavbarContents =
+  //   <div className='lg:hidden block absolute top-28 w-full left-0 right-0 bg-slate-700 transition'>
+  //     <ul className='text-center text-lg p-20'>
+  //       <Link spy smooth to="home" >
+  //         <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>Home</li>
+  //       </Link>
+  //       <Link spy smooth to="about">
+  //         <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>About</li>
+  //       </Link>
+  //       <Link spy smooth to="services">
+  //         <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>Services</li>
+  //       </Link>
+  //       <Link spy smooth to="contact">
+  //         <li className='cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded'>Contacts</li>
+  //       </Link>
 
-      </ul>
-    </div>
+  //     </ul>
+  //   </div>
 
 
 
@@ -46,16 +46,16 @@ const MenuBar = ({ onLoginClick }) => {
             <div className="flex-10 ">
               <ul className="font-normal flex lg:gap-8 md:gap-6 lg:text-[18px] md:text-[14px]">
                 <Link smooth to="home">
-                  <li className='cursor-pointer hover:text-cyan-950 transition border-b-2 hover:border-fuchsia-100 ' onClick={closeMenu}>Home</li>
+                  <li className='cursor-pointer hover:text-cyan-950 transition border-b-2 hover:border-fuchsia-100 '>Home</li>
                 </Link>
                 <Link smooth to="about">
-                  <li className='cursor-pointer' onClick={closeMenu} >About</li>
+                  <li className='cursor-pointer'>About</li>
                 </Link>
                 <Link smooth to="services">
-                  <li className='cursor-pointer' onClick={closeMenu}>Services</li>
+                  <li className='cursor-pointer'>Services</li>
                 </Link>
                 <Link smooth to="contact">
-                  <li className='cursor-pointer' onClick={closeMenu}>Contacts</li>
+                  <li className='cursor-pointer'>Contacts</li>
                 </Link>
               </ul>
             </div>
@@ -64,13 +64,13 @@ const MenuBar = ({ onLoginClick }) => {
             </button>
           </div>
         </div>
-        <div>
+        {/* <div>
           {click && NavbarContents}
 
         </div>
         <button className='block md:hidden transition mr-4' onClick={MenuCLick}>
           {click ? <FaTimes /> : <CiMenuFries />}
-        </button>
+        </button> */}
 
       </div>
 
