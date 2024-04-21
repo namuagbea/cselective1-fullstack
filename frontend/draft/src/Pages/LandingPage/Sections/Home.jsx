@@ -25,7 +25,7 @@ const Home = () => {
         <Menubar onLoginClick={handleOpenLogin} />
       </Headroom>
     </div>
-      <div className="h-full bg-[#F1F9FC] pt-36 w-full">
+      <div className="h-full bg-[#F1F9FC] pt-24 w-full">
 
         {/* Login modal */}
         {isLoginOpen && (

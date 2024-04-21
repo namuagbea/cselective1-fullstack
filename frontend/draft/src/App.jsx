@@ -5,6 +5,7 @@ import LandingPage from "../src/Pages/LandingPage/LandingPage.jsx";
 import MyBooking from "../src/Pages/MyBookingPage/MyBooking.jsx";
 import Home from "./Pages/LandingPage/Sections/Home.jsx";
 import MyAppointmens from "./Pages/My appointments/MyAppointmens.jsx";
+import ViewMyAppointments from './Pages/My appointments/ViewMyAppointments.jsx';
 
 export default function App() {
   return (
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/Services" element={<LandingPage />} />
         <Route path="/Contacts" element={<LandingPage />} />
         <Route path="/MyAppointments" element={<MyAppointmens />} />
+        <Route path="/ViewAppointment" element={<ViewMyAppointments />} />
+
 
 
 
