@@ -2,12 +2,16 @@ import React from "react";
 import MenubarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import ClinicPictureDark from "../../../media/ClinicPictureDark.png";
 import Footer from "../../GeneralComponents/Footer.jsx";
+import Headroom from "react-headroom";
+import './Mybooking.css';
 
 const MyBooking = () => {
   return (
     <div className=" relative min-h-screen">
-      <div className="bg-[#1E456A]">
-        <MenubarV2 />
+      <div className="w-full">
+          <Headroom className="headroom">
+            <MenubarV2/>
+          </Headroom>
       </div>
       <div
         className="bg-cover bg-center relative"

@@ -1,0 +1,8 @@
+.headroom {
+    background-color: #1E456A;
+}
+
+.headroom--scrolled {
+    transition: transform 200ms ease-in-out;
+    background-color: #1E456A;
+}
