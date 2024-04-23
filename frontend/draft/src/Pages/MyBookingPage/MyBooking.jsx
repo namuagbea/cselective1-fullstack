@@ -8,11 +8,9 @@ import './Mybooking.css';
 const MyBooking = () => {
   return (
     <div className=" relative min-h-screen">
-      <div className="w-full">
-          <Headroom className="headroom">
+          <Headroom className="MenubarV2">
             <MenubarV2/>
           </Headroom>
-      </div>
       <div
         className="bg-cover bg-center relative"
         style={{ backgroundImage: `url(${ClinicPictureDark})` }}

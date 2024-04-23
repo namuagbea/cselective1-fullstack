@@ -1,5 +1,5 @@
-.headroom {
-    background-color: transparent;
+.Menubar{
+    background-color: #F1F9FC;
 }
 .headroom--scrolled {
     transition: transform 200ms ease-in-out;

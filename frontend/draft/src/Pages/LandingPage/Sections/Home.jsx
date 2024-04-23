@@ -5,7 +5,7 @@ import Login from "../Components/Login";
 import Headroom from "react-headroom";
 import DoctorwithPage from "../../../../media/Doctor.png";
 import "./Home.css";
-import Menubar from "../../../GeneralComponents/MenuBar";
+import MenuBar from "../../../GeneralComponents/MenuBar";
 const Home = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
@@ -19,10 +19,9 @@ const Home = () => {
 
   return (
 
-    <>
-    <div className="bg-[#F1F9FC] w-full">
-      <Headroom className="headroom">
-        <Menubar onLoginClick={handleOpenLogin} />
+    <><div className="bg-[#F1F9FC]">
+      <Headroom className="Menubar">
+        <MenuBar onLoginClick={handleOpenLogin} />
       </Headroom>
     </div>
       <div className="h-full bg-[#F1F9FC] pt-24 w-full">
