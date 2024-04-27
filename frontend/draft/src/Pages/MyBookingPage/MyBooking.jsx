@@ -8,13 +8,18 @@ import './Mybooking.css';
 const MyBooking = () => {
   return (
     <div className=" relative min-h-screen">
-          <Headroom className="MenubarV2">
-            <MenubarV2/>
-          </Headroom>
+          {/* <Headroom className="MenubarV2"> */}
+          {/* </Headroom> */}
       <div
         className="bg-cover bg-center relative"
         style={{ backgroundImage: `url(${ClinicPictureDark})` }}
       >
+        <div className="bg-[#224F79]">
+          <MenubarV2 />
+
+
+        </div>
+
         <div className="relative top-0 left-0 p-8 text-white">
           <h1 className="text-4xl font-bold">Welcome to Smile Prime Online</h1>
           <h1 className="text-4xl font-bold">Booking System</h1>

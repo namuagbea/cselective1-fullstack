@@ -13,10 +13,10 @@ const MyAppointments = () => {
         <h2 className='font-semibold text-[31px]'>Bookings (<span>1</span>)</h2>
 
         {/* Booking conatiner list */}
-        <Link to="ViewAppointment" className='hover:bg-zinc-100 cursor-pointer border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4'>
+        <Link to="/MyAppointments/ViewAppointment" className='hover:bg-zinc-100 cursor-pointer border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4'>
           <div className='px-6 py-3'>
             <h3 className='font-bold text-[32px] text-[#404040]'>Metal & Braces</h3>
-            <h6 className='text-[10px]'>Created: <span>09/14/2025</span></h6>
+            <h6 className='text-[10px] mt-[-6px]'>Created: <span>09/14/2025</span></h6>
           </div>
           
 
