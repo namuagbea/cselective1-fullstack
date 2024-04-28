@@ -17,3 +17,17 @@ Overall, the application provides convenience and ease of use for all its benefa
 <p align="center">
 <b>ERD Link:</b> https://lucid.app/lucidchart/a0ef92a4-2ea2-4144-a007-6159bd04aa04/edit?viewport_loc=-934%2C-435%2C2206%2C907%2C0_0&invitationId=inv_a9c76ec7-316a-4c87-b05c-d676ced56abb
 </p>
+
+
+
+## Things to do (delete after completion)
+[]fix naming of "my appointments" and "my booking"</br>
+[]fix typos of file naming</br>
+[]fix spacing of headroom(?)/menubar</br>
+[]add routing for my bookings sa menubar</br> 
+### To add
+
+[]login status check for mybooking/myappointment</br>
+[]update menubarv2 to match previous menubar, + some updates (im also recommending to remove home, about, services, contacts while nasa menubarv2, make the logo clickable nalang to go back home)</br>
+[]add back signup functionality</br>
+[]add functionalities for booking system and beyond </br>

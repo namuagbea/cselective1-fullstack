@@ -16,11 +16,14 @@ const Login = ({ onClose }) => {
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
       if (response.ok) {
+        const data = await response.json();
+        const token = data.token; // Assuming your response contains a token field
+        sessionStorage.setItem("authToken", token); // Store the token in session storage
         console.log("Login successful");
-        // Token storage here
         onClose();
+        window.location.reload();
       } else {
         const errorData = await response.json();
         console.error("Login failed:", errorData);
@@ -29,6 +32,7 @@ const Login = ({ onClose }) => {
       console.error("Error during login:", error);
     }
   };
+  
 
   const handleSignUpClick = () => {
     setShowSignUp(true);

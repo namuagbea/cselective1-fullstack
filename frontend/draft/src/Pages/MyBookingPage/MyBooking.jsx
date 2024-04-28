@@ -2,7 +2,6 @@ import React from "react";
 import MenubarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import ClinicPictureDark from "../../../media/ClinicPictureDark.png";
 import Footer from "../../GeneralComponents/Footer.jsx";
-import Headroom from "react-headroom";
 import './Mybooking.css';
 
 const MyBooking = () => {
