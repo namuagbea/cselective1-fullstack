@@ -6,6 +6,7 @@ import MyBooking from "../src/Pages/MyBookingPage/MyBooking.jsx";
 import Home from "./Pages/LandingPage/Sections/Home.jsx";
 import MyAppointmens from "./Pages/My appointments/MyAppointmens.jsx";
 import ViewMyAppointments from './Pages/My appointments/ViewMyAppointments.jsx';
+import EditMyappoinments from "./Pages/My appointments/EditMyappoinments.jsx";
 
 export default function App() {
   return (
@@ -19,6 +20,8 @@ export default function App() {
         <Route path="/Contacts" element={<LandingPage />} />
         <Route path="/MyAppointments" element={<MyAppointmens />} />
         <Route path="/MyAppointments/ViewAppointment" element={<ViewMyAppointments />} />
+        <Route path="/MyAppointments/EditAppointment" element={<EditMyappoinments />} />
+
 
 
 
