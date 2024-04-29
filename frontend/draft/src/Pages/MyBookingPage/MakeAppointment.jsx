@@ -2,7 +2,7 @@ import React from "react";
 import MenubarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import ClinicPictureDark from "../../../media/ClinicPictureDark.png";
 import Footer from "../../GeneralComponents/Footer.jsx";
-import './Mybooking.css';
+import './MakeAppointment.css';
 
 const MyBooking = () => {
   return (
