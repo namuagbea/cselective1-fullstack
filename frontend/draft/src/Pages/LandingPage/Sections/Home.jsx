@@ -68,7 +68,7 @@ const Home = ({ isLoggedIn }) => {
                 </button>
               )}
               {isLoggedIn && (
-                <Link to="MyBooking">
+                <Link to="/MakeApppointment">
                   <button className="heartbeat transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 rounded-full lg:text-lg md:text-[15px] sm:[9px] font-semibold">
                     Make Appointment
                   </button>
