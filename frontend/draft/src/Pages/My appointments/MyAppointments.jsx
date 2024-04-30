@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx'
-import Dropdown from './Components/Dropdown.jsx';
 import {Link} from 'react-router-dom';
+import { FaTrash } from "react-icons/fa";
+
 
 const MyAppointments = () => {
   const [openDropDown, setOpenDropdown] = useState(false);
@@ -20,11 +21,9 @@ const MyAppointments = () => {
             <h6 className='text-[10px] mt-[-6px]'>Created: <span>09/14/2025</span></h6>
           </div>
 
-          {/* Dropdown */}
-          <div className='justify-end place-items-center flex pr-3'>
-            <button onClick={() => setOpenDropdown((prev) => !prev)}>
-              <svg className="flex-none size-5 text-gray-600 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>
-            </button>
+          {/* Trashcan */}
+          <div className=' flex justify-center place-items-center pr-3'>
+            <FaTrash color='#ED3B3B' />
           </div>
         </Link>
       
@@ -33,7 +32,6 @@ const MyAppointments = () => {
 
       {openDropDown &&
         <div className='absolute bg-[#FFFFFF] right-14 top-[16rem]'>
-          <Dropdown />
         </div>
       }
     </div>
