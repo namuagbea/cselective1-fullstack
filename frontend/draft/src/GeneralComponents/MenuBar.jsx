@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
+import { Link as LinkTo }  from "react-router-dom";
 import DentalLogo from "../Pages/LandingPage/Components/DentalLogo.jsx";
 import { FaTimes } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import { CiMenuFries } from "react-icons/ci";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
 
 const MenuBar = ({ onLoginClick, isLoggedIn }) => {
   const [click, setClick] = useState(false);
@@ -50,6 +53,8 @@ const MenuBar = ({ onLoginClick, isLoggedIn }) => {
             Contacts
           </li>
         </Link>
+
+
         {/* Conditional rendering for My Bookings */}
         {isLoggedIn && (
           <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
@@ -103,10 +108,12 @@ const MenuBar = ({ onLoginClick, isLoggedIn }) => {
                 </li>
               </Link>
               {/* conditional rendering for My Bookings */}
-              {isLoggedIn && <li>My Bookings</li>}
+              <LinkTo to="/MyAppointments">
+                {isLoggedIn && <li>My Bookings</li>}
+              </LinkTo>
             </ul>
           </div>
-          <div className="ml-8 md:mr-3 text-[18px] ">
+          <div className="ml-4 md:mr-3 text-[18px] ">
             {/* Conditional rendering for Login button */}
             {!isLoggedIn && (
               <div>
@@ -121,27 +128,26 @@ const MenuBar = ({ onLoginClick, isLoggedIn }) => {
             {/* Conditional rendering for User dropdown */}
             {isLoggedIn && (
               <div
-                className="ml-4 -translate-y-0"
-                onMouseEnter={toggleDropdown}
-                onMouseLeave={toggleDropdown}
+                className="text-white bg-sky-900 rounded-2xl px-6 py-2 -translate-y-0"
+                onClick={() => setDropdownOpen((prev) => !prev)}
               >
                 <a className="hover:cursor-pointer">
                   <FontAwesomeIcon
                     icon={faUser}
-                    size="2x"
+                    size="20"
                     className="text-sm md:text-base"
                   ></FontAwesomeIcon>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    size="2x"
-                    className="ml-1 text-xs md:text-sm"
-                  ></FontAwesomeIcon>
+                  <span className="ml-2">Lea</span>
+                  
                 </a>
-                {/* Dropdown menu */}
+
+                {/* Dropdown menu  */}
+
                 {dropdownOpen && (
-                  <div className="absolute bg-white text-sm w-16 text-left py-2 px-2 rounded-lg shadow-md hover:cursor-pointer font-bold">
-                    <ul>
-                      <li onClick={handleLogout}>Logout</li>
+                  <div className="absolute text-[#c41a1a] mt-4 right-1 bg-white text-sm w-full text-center py-2 px-2 rounded-lg shadow-md hover:cursor-pointer font-bold">
+                    <ul className="flex flex-row p-1">
+                      <FiLogOut fontSize={20}/>
+                      <li className="pl-1" onClick={handleLogout}>Logout</li>
                     </ul>
                   </div>
                 )}

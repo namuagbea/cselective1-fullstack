@@ -3,7 +3,6 @@ import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx';
 import { IoMdCalendar } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { GrLocationPin } from "react-icons/gr";
-import Dropdown from './Components/Dropdown.jsx';
 
 const ViewMyAppointments = () => {
   const [openDropDown, setOpenDropdown] = useState(false);
@@ -28,12 +27,7 @@ const ViewMyAppointments = () => {
 
           </div>
 
-          {/* Dropdown */}
-          <div className='justify-end pt-5 pr-3'>
-            <button onClick={() => setOpenDropdown((prev) => !prev)}>
-              <svg className="flex-none size-5 text-gray-600 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
+
 
         </div>
         
@@ -72,11 +66,7 @@ const ViewMyAppointments = () => {
           <h6 className='text-[10px] text-[#767676] mt-[-6px]'>Created: <span>09/14/2025</span></h6>
         </div>
 
-        {openDropDown && 
-          <div className='absolute bg-[#FFFFFF] right-40 top-[17rem]'>
-            <Dropdown />
-          </div>
-        }
+
         
 
       </div>
