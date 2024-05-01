@@ -6,7 +6,7 @@ import DoctorwithPage from "../../../../media/Doctor.png";
 import "./Home.css";
 import MenuBar from "../../../GeneralComponents/MenuBar";
 
-const Home = ({ isLoggedIn }) => {
+const Home = ({ isLoggedIn, username }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const handleOpenLogin = () => {
@@ -21,7 +21,7 @@ const Home = ({ isLoggedIn }) => {
     <>
       <div className="bg-[#F1F9FC]">
         <Headroom className="Menubar">
-          <MenuBar onLoginClick={handleOpenLogin} isLoggedIn={isLoggedIn} />
+          <MenuBar onLoginClick={handleOpenLogin} isLoggedIn={isLoggedIn} username={username} />
         </Headroom>
       </div>
       <div className="h-full bg-[#F1F9FC] pt-24 w-full">

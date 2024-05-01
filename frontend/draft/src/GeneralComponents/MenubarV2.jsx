@@ -4,7 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import "react-router-dom";
 
-const MenuBar = ({ onLoginClick }) => {
+const MenuBar = ({ onLoginClick, username }) => {
   const [click, setClick] = useState(false);
   const MenuCLick = () => {
     setClick(!click);
@@ -47,12 +47,16 @@ const MenuBar = ({ onLoginClick }) => {
             Smile Prime
           </span>
         </Link>
-       
+
         <div className="lg:flex md:flex md:flex-1 lg:flex-1 items-center justify-end hidden">
           <div className="flex-10 ">
             <ul className="font-normal flex lg:gap-8 md:gap-6 lg:text-[18px] md:text-[14px]">
-              
-              <Link to="/MyAppointments">
+              <Link
+                to={{
+                  pathname: "/MyAppointments",
+                  state: { username: username },
+                }}
+              >
                 <li className="cursor-pointer" onClick={closeMenu}>
                   My Appointments
                 </li>
@@ -63,7 +67,7 @@ const MenuBar = ({ onLoginClick }) => {
             onClick={onLoginClick}
             className="bg-[#00B3DE] text-[#F1F9FC] px-9 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
           >
-            Lea
+            {username}
           </button>
         </div>
       </div>

@@ -7,6 +7,7 @@ import Home from "./Sections/Home.jsx";
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const checkToken = async () => {
@@ -22,7 +23,16 @@ export default function LandingPage() {
           });
           if (response.ok) {
             setIsLoggedIn(true);
-            console.log("user is logged in");
+            const response = await fetch("http://127.0.0.1:8000/user/", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${sessionStorage.getItem("authToken")}`,
+              },
+            });
+            const data = await response.json();
+            setUsername(data);
+            console.log(data + " this is the username");
           } else {
             setIsLoggedIn(false);
           }
@@ -47,7 +57,7 @@ export default function LandingPage() {
 
   return (
     <div className="">
-      <Home isLoggedIn={isLoggedIn}/>
+      <Home isLoggedIn={isLoggedIn} username={username} />
 
       <About />
 

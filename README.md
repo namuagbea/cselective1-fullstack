@@ -21,13 +21,9 @@ Overall, the application provides convenience and ease of use for all its benefa
 
 
 ## Things to do (delete after completion)
-[]fix naming of "my appointments" and "my booking"</br>
-[]fix typos of file naming</br>
 []fix spacing of headroom(?)/menubar</br>
-[]add routing for my bookings sa menubar</br> 
 ### To add
 
 []login status check for mybooking/myappointment</br>
-[]update menubarv2 to match previous menubar, + some updates (im also recommending to remove home, about, services, contacts while nasa menubarv2, make the logo clickable nalang to go back home)</br>
 []add back signup functionality</br>
 []add functionalities for booking system and beyond </br>

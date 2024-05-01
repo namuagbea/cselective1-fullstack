@@ -1,15 +1,67 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx'
 import {Link} from 'react-router-dom';
 import { FaTrash } from "react-icons/fa";
-
+import { useNavigate } from 'react-router-dom';
 
 const MyAppointments = () => {
   const [openDropDown, setOpenDropdown] = useState(false);
+  const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = sessionStorage.getItem("authToken");
+        if (token) {
+          const response = await fetch("http://127.0.0.1:8000/test_token", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+            },
+          });
+          if (response.ok) {
+            setIsLoggedIn(true);
+            const response = await fetch("http://127.0.0.1:8000/user/", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${sessionStorage.getItem("authToken")}`,
+              },
+            });
+            const data = await response.json();
+            setUsername(data);
+            console.log(data + " this is the username");
+          }else{
+            setIsLoggedIn(false);
+            navigate("/");
+          }
+        } else{
+          setIsLoggedIn(false);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error checking token:", error);
+        setIsLoggedIn(false);
+      }finally{
+        setLoading(false);
+      }
+    };
+
+    checkToken();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <div className='bg-[#1E456A]'>
-        <MenuBarV2/>
+        <MenuBarV2 username={username}/>
       </div>
       <div className='p-10'>
         <h2 className='font-semibold text-[31px]'>Bookings (<span>1</span>)</h2>
