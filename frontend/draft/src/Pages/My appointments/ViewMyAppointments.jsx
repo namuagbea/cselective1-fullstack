@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx';
 import { IoMdCalendar } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { GrLocationPin } from "react-icons/gr";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const ViewMyAppointments = () => {
-  const [openDropDown, setOpenDropdown] = useState(false);
 
 
   return (
     <div className='h-full w-full'>
-      <div className='bg-[#1E456A]'>
+      <div className='bg-[#1E456A] '>
         <MenuBarV2 />
       </div>
-      <div className='p-10'>
+      <Link to='/MyAppointments' className='p-10 flex flex-row'>
+        <div className='flex place-items-center justify-center mr-1 mt-1'>
+          <IoIosArrowBack fontSize={25} />
+
+        </div>
         <h2 className='font-semibold text-[31px]'>View Booking (<span>1</span>)</h2>
-      </div>
+      </Link>
 
       {/* Appoinment information container */}
 
