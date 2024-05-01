@@ -19,11 +19,3 @@ Overall, the application provides convenience and ease of use for all its benefa
 </p>
 
 
-
-## Things to do (delete after completion)
-[]fix spacing of headroom(?)/menubar</br>
-### To add
-
-[]login status check for mybooking/myappointment</br>
-[]add back signup functionality</br>
-[]add functionalities for booking system and beyond </br>
