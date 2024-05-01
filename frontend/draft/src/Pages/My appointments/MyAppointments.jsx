@@ -22,8 +22,8 @@ const MyAppointments = () => {
           </div>
 
           {/* Trashcan */}
-          <div className=' flex justify-center place-items-center pr-3'>
-            <FaTrash color='#ED3B3B' />
+          <div className=' flex justify-center place-items-center pr-6'>
+            <FaTrash color='#AD0202' fontSize={20} />
           </div>
         </Link>
       
