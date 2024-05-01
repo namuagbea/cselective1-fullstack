@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
-import { Link as LinkTo }  from "react-router-dom";
+import { Link as LinkTo } from "react-router-dom";
 import DentalLogo from "../Pages/LandingPage/Components/DentalLogo.jsx";
 import { FaTimes } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
@@ -8,8 +8,7 @@ import { CiMenuFries } from "react-icons/ci";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-
-const MenuBar = ({ onLoginClick, isLoggedIn }) => {
+const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
   const [click, setClick] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -53,7 +52,6 @@ const MenuBar = ({ onLoginClick, isLoggedIn }) => {
             Contacts
           </li>
         </Link>
-
 
         {/* Conditional rendering for My Bookings */}
         {isLoggedIn && (
@@ -137,8 +135,7 @@ const MenuBar = ({ onLoginClick, isLoggedIn }) => {
                     size="20"
                     className="text-sm md:text-base"
                   ></FontAwesomeIcon>
-                  <span className="ml-2">Lea</span>
-                  
+                  <span className="ml-2">{username}</span>
                 </a>
 
                 {/* Dropdown menu  */}
@@ -146,8 +143,10 @@ const MenuBar = ({ onLoginClick, isLoggedIn }) => {
                 {dropdownOpen && (
                   <div className="absolute text-[#c41a1a] mt-4 right-1 bg-white text-sm w-full text-center py-2 px-2 rounded-lg shadow-md hover:cursor-pointer font-bold">
                     <ul className="flex flex-row p-1">
-                      <FiLogOut fontSize={20}/>
-                      <li className="pl-1" onClick={handleLogout}>Logout</li>
+                      <FiLogOut fontSize={20} />
+                      <li className="pl-1" onClick={handleLogout}>
+                        Logout
+                      </li>
                     </ul>
                   </div>
                 )}

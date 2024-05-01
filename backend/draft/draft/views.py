@@ -13,6 +13,17 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from rest_framework.permissions import IsAuthenticated
 
 
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST, require_GET
+from .models import Appointment
+from .serializers import AppointmentSerializer
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from rest_framework.views import APIView
+
+
+
+
 @api_view(['POST'])
 def login(request):
     user = get_object_or_404(User, username=request.data['username'])
@@ -39,3 +50,31 @@ def signup(request):
 @permission_classes([IsAuthenticated])
 def test_token(request):
     return Response("Passed for {}".format(request.user.email))
+
+@csrf_exempt
+def create_appointment(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = AppointmentSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+    else:
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+    
+    
+@require_GET
+def get_appointments(request):
+    appointments = Appointment.objects.all()
+    serializer = AppointmentSerializer(appointments, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+
+
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def get_username(request):
+    return Response(format(request.user.username))
