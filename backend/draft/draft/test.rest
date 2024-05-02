@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "username": "yash",
-    "password": "123"
+    "password": "yash"
 }
 
 
@@ -34,6 +34,7 @@ Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
 
 POST http://127.0.0.1:8000/api/create_appointments/
 Content-Type: application/json
+Authorization: Token 4320fd1cf315466a428d4349c8a99750edd313ca
 
 {
   "service": "metalCeramicBraces",
@@ -52,6 +53,14 @@ Content-Type: application/json
 
 
 GET http://127.0.0.1:8000/user/
+Content-Type: application/json
+Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
+
+{}
+
+###
+
+GET http://127.0.0.1:8000/api/appointments
 Content-Type: application/json
 Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
 

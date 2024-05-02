@@ -84,16 +84,24 @@ const MyBooking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = sessionStorage.getItem("authToken");
       const response = await axios.post(
         "http://127.0.0.1:8000/api/create_appointments/",
         JSON.stringify(formData),
-        console.log("stringified data", JSON.stringify(formData)),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+        }
       );
       console.log(response.data);
+      navigate('/AppointmentConfirmation');
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
+  
 
   if(loading) {
     return <div>Loading...</div>

@@ -19,7 +19,8 @@ from .models import Appointment
 from .serializers import AppointmentSerializer
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from rest_framework.views import APIView
+
+from django.contrib.auth.decorators import login_required  # Import the login_required decorator
 
 
 
@@ -52,24 +53,23 @@ def test_token(request):
     return Response("Passed for {}".format(request.user.email))
 
 @csrf_exempt
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_appointment(request):
     if request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = AppointmentSerializer(data=data)
+        serializer = AppointmentSerializer(data={**request.data, 'user': request.user.id})
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
-    else:
-        return JsonResponse({"error": "Method not allowed"}, status=405)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)   
     
-    
-@require_GET
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def get_appointments(request):
-    appointments = Appointment.objects.all()
+    appointments = Appointment.objects.filter(user=request.user)
     serializer = AppointmentSerializer(appointments, many=True)
-    return JsonResponse(serializer.data, safe=False)
-
+    return Response(serializer.data)
 
 
 
