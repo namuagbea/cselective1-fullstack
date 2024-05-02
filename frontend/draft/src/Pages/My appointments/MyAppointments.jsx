@@ -83,7 +83,7 @@ const MyAppointments = () => {
 
         {/* Booking conatiner list */}
         {appointments.map((appointment) => (
-          <div
+          <Link to="/MyAppointments/ViewAppointment"
             key={appointment.id}
             className="hover:bg-zinc-100 border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4"
           >
@@ -100,7 +100,7 @@ const MyAppointments = () => {
             <div className=" flex justify-center place-items-center pr-6">
               <FaTrash color="#AD0202" fontSize={20} />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
