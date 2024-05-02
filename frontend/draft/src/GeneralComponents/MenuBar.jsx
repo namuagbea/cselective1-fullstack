@@ -18,9 +18,9 @@ const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
 
   const closeMenu = () => setClick(false);
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+  // const toggleDropdown = () => {
+  //   setDropdownOpen(!dropdownOpen);
+  // };
 
   const handleLogout = () => {
     sessionStorage.removeItem("authToken");
