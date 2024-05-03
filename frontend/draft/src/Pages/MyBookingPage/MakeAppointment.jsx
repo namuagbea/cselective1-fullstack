@@ -13,6 +13,7 @@ const MyBooking = () => {
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  
 
 
   const [formData, setFormData] = useState({
@@ -187,9 +188,90 @@ const MyBooking = () => {
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  type="datetime-local"
+                  type="date"
                   className="w-full rounded-lg border p-2 text-gray-400"
                 />
+              
+                <h3 className="font-bold mt-4 mb-2">Pick your time</h3>
+
+                  <ul id="timetable" className="grid w-full grid-cols-3 gap-2 mb-5">
+                    <li>
+                      <input type="radio" id="10-am" defaultValue className="hidden peer" name="timetable" />
+                    <label htmlFor="10-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        10:00 AM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="10-30-am" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="10-30-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        10:30 AM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="11-am" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="11-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        11:00 AM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="11-30-am" defaultValue className="hidden peer" name="timetable" />
+                    <label htmlFor="11-30-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        11:30 AM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="12-am" defaultValue className="hidden peer" name="timetable" defaultChecked />
+                      <label htmlFor="12-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        12:00 AM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="12-30-pm" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="12-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        12:30 PM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="1-pm" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="1-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        01:00 PM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="1-30-pm" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="1-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        01:30 PM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="2-pm" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="2-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        02:00 PM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="2-30-pm" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="2-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        02:30 PM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="3-pm" defaultValue className="hidden peer" name="timetable" />
+                      <label htmlFor="3-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        03:00 PM
+                      </label>
+                    </li>
+                    <li>
+                      <input type="radio" id="3-30-pm" defaultValue className="hidden peer" name="timetable" />
+                    <label htmlFor="3-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
+                        03:30 PM
+                      </label>
+                    </li>
+                  </ul>
+                  
+
+
+
               </div>
 
               <div className="mx-5">
