@@ -6,7 +6,7 @@ import DoctorwithPage from "../../../../media/Doctor.png";
 import "./Home.css";
 import MenuBar from "../../../GeneralComponents/MenuBar";
 
-const Home = ({ isLoggedIn }) => {
+const Home = ({ isLoggedIn, username }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const handleOpenLogin = () => {
@@ -21,7 +21,7 @@ const Home = ({ isLoggedIn }) => {
     <>
       <div className="bg-[#F1F9FC]">
         <Headroom className="Menubar">
-          <MenuBar onLoginClick={handleOpenLogin} isLoggedIn={isLoggedIn} />
+          <MenuBar onLoginClick={handleOpenLogin} isLoggedIn={isLoggedIn} username={username} />
         </Headroom>
       </div>
       <div className="h-full bg-[#F1F9FC] pt-24 w-full">
@@ -62,14 +62,14 @@ const Home = ({ isLoggedIn }) => {
               {!isLoggedIn && (
                 <button
                   onClick={handleOpenLogin}
-                  className="heartbeat transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 rounded-full lg:text-lg md:text-[15px] sm:[9px] font-semibold"
+                  className=" transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 rounded-full lg:text-lg md:text-[15px] sm:[9px] font-semibold"
                 >
                   Make Appointment
                 </button>
               )}
               {isLoggedIn && (
                 <Link to="/MakeApppointment">
-                  <button className="heartbeat transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 rounded-full lg:text-lg md:text-[15px] sm:[9px] font-semibold">
+                  <button className="transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 rounded-full lg:text-lg md:text-[15px] sm:[9px] font-semibold">
                     Make Appointment
                   </button>
                 </Link>

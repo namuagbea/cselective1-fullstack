@@ -1,43 +1,123 @@
-import React, { useState } from 'react'
-import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx'
-import Dropdown from './Components/Dropdown.jsx';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import MenuBarV2 from "../../GeneralComponents/MenubarV2.jsx";
+import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { GrFormAdd } from "react-icons/gr";
+
 
 const MyAppointments = () => {
+  const [appointments, setAppointments] = useState([]);
   const [openDropDown, setOpenDropdown] = useState(false);
+  const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = sessionStorage.getItem("authToken");
+        if (token) {
+          const response = await fetch("http://127.0.0.1:8000/test_token", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+            },
+          });
+          if (response.ok) {
+            setIsLoggedIn(true);
+            const response = await fetch("http://127.0.0.1:8000/user/", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${sessionStorage.getItem("authToken")}`,
+              },
+            });
+            const data = await response.json();
+            setUsername(data);
+
+            const response2 = await fetch(
+              "http://127.0.0.1:8000/api/appointments/",
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Token ${token}`,
+                },
+              }
+            );
+            const data2 = await response2.json();
+            setAppointments(data2);
+          } else {
+            setIsLoggedIn(false);
+            navigate("/");
+          }
+        } else {
+          setIsLoggedIn(false);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error checking token:", error);
+        setIsLoggedIn(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkToken();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
-      <div className='bg-[#1E456A]'>
-        <MenuBarV2/>
+      <div className="bg-[#1E456A]">
+        <MenuBarV2 username={username} />
       </div>
-      <div className='p-10'>
-        <h2 className='font-semibold text-[31px]'>Bookings (<span>1</span>)</h2>
-
-        {/* Booking conatiner list */}
-        <Link to="/MyAppointments/ViewAppointment" className='hover:bg-zinc-100 border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4'>
-          <div className='px-6 py-3'>
-            <h3 className='font-bold text-[32px] text-[#404040]'>Metal & Braces</h3>
-            <h6 className='text-[10px] mt-[-6px]'>Created: <span>09/14/2025</span></h6>
+      <div className="p-10">
+        <div className="flex flex-row justify-between">
+          <div>
+            <h2 className="font-semibold text-[31px]">
+              Bookings (<span>1</span>)
+            </h2>
           </div>
-
-          {/* Dropdown */}
-          <div className='justify-end place-items-center flex pr-3'>
-            <button onClick={() => setOpenDropdown((prev) => !prev)}>
-              <svg className="flex-none size-5 text-gray-600 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
-        </Link>
-      
-        
-      </div>
-
-      {openDropDown &&
-        <div className='absolute bg-[#FFFFFF] right-14 top-[16rem]'>
-          <Dropdown />
+          <Link to="/MakeApppointment" className="hover:bg-slate-200 rounded-lg  flex items-center mr-2 p-2">
+            <GrFormAdd fontSize={25}/>
+            <span className="ml-1 pb-[1px] font-semibold pr-1">New appointment</span>
+          </Link>
         </div>
-      }
-    </div>
-  )
-}
+        {/* Booking conatiner list */}
+        {appointments.map((appointment) => (
+          <Link to="/MyAppointments/ViewAppointment"
+            key={appointment.id}
+            className="hover:bg-zinc-100 border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4"
+          >
+            <div className="px-6 py-3">
+              <h3 className="font-bold text-[32px] text-[#404040]">
+                {appointment.service}
+              </h3>
+              <h6 className="text-[10px] mt-[-6px]">
+                Created: <span>{appointment.first_name}</span>
+              </h6>
+            </div>
 
-export default MyAppointments
+            {/* Trashcan */}
+            <div className=" flex justify-center place-items-center pr-6">
+              <FaTrash color="#AD0202" fontSize={20} />
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {openDropDown && (
+        <div className="absolute bg-[#FFFFFF] right-14 top-[16rem]"></div>
+      )}
+    </div>
+  );
+};
+
+export default MyAppointments;

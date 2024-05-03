@@ -1,22 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx';
 import { IoMdCalendar } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { GrLocationPin } from "react-icons/gr";
-import Dropdown from './Components/Dropdown.jsx';
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const ViewMyAppointments = () => {
-  const [openDropDown, setOpenDropdown] = useState(false);
 
 
   return (
     <div className='h-full w-full'>
-      <div className='bg-[#1E456A]'>
+      <div className='bg-[#1E456A] '>
         <MenuBarV2 />
       </div>
-      <div className='p-10'>
+      <Link to='/MyAppointments' className='p-10 flex flex-row'>
+        <div className='flex place-items-center justify-center mr-1 mt-1'>
+          <IoIosArrowBack fontSize={25} />
+
+        </div>
         <h2 className='font-semibold text-[31px]'>View Booking (<span>1</span>)</h2>
-      </div>
+      </Link>
 
       {/* Appoinment information container */}
 
@@ -28,12 +32,7 @@ const ViewMyAppointments = () => {
 
           </div>
 
-          {/* Dropdown */}
-          <div className='justify-end pt-5 pr-3'>
-            <button onClick={() => setOpenDropdown((prev) => !prev)}>
-              <svg className="flex-none size-5 text-gray-600 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>
-            </button>
-          </div>
+
 
         </div>
         
@@ -72,11 +71,7 @@ const ViewMyAppointments = () => {
           <h6 className='text-[10px] text-[#767676] mt-[-6px]'>Created: <span>09/14/2025</span></h6>
         </div>
 
-        {openDropDown && 
-          <div className='absolute bg-[#FFFFFF] right-40 top-[17rem]'>
-            <Dropdown />
-          </div>
-        }
+
         
 
       </div>

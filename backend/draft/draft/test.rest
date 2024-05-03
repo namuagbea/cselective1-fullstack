@@ -2,8 +2,8 @@ POST http://127.0.0.1:8000/login
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "admin"
+    "username": "yash",
+    "password": "yash"
 }
 
 
@@ -24,6 +24,44 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/test_token
 Content-Type: application/json
-Authorization: Token 209dc5c9e312cd19b04f5ce825e499b94ec863178
+Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
+
+{}
+
+
+###
+
+
+POST http://127.0.0.1:8000/api/create_appointments/
+Content-Type: application/json
+Authorization: Token 4320fd1cf315466a428d4349c8a99750edd313ca
+
+{
+  "service": "metalCeramicBraces",
+  "dentist": "karlSubido",
+  "date": "2024-04-30T15:30:00Z",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "johndoe@example.com",
+  "contact_number": "1234567890",
+  "address": "123 Main St, City",
+  "other": "Additional information about the appointment"
+}
+
+
+###
+
+
+GET http://127.0.0.1:8000/user/
+Content-Type: application/json
+Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
+
+{}
+
+###
+
+GET http://127.0.0.1:8000/api/appointments
+Content-Type: application/json
+Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
 
 {}
