@@ -3,6 +3,8 @@ import MenuBarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { GrFormAdd } from "react-icons/gr";
+
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -77,10 +79,17 @@ const MyAppointments = () => {
         <MenuBarV2 username={username} />
       </div>
       <div className="p-10">
-        <h2 className="font-semibold text-[31px]">
-          Bookings (<span>1</span>)
-        </h2>
-
+        <div className="flex flex-row justify-between">
+          <div>
+            <h2 className="font-semibold text-[31px]">
+              Bookings (<span>1</span>)
+            </h2>
+          </div>
+          <Link to="/MakeApppointment" className="hover:bg-slate-200 rounded-lg  flex items-center mr-2 p-2">
+            <GrFormAdd fontSize={25}/>
+            <span className="ml-1 pb-[1px] font-semibold pr-1">New appointment</span>
+          </Link>
+        </div>
         {/* Booking conatiner list */}
         {appointments.map((appointment) => (
           <Link to="/MyAppointments/ViewAppointment"

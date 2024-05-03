@@ -6,7 +6,7 @@ import Home from "./Pages/LandingPage/Sections/Home.jsx";
 import MakeAppointment from "./Pages/MyBookingPage/MakeAppointment.jsx";
 import MyAppointments from "./Pages/My appointments/MyAppointments.jsx";
 import ViewMyAppointments from './Pages/My appointments/ViewMyAppointments.jsx';
-import AppointmentConfirmation from "./Pages/MyBookingPage/AppoointmentConfirmation.jsx";
+import AppointmentConfirmation from "./Pages/MyBookingPage/AppointmentConfirmation.jsx";
 
 export default function App() {
   return (
