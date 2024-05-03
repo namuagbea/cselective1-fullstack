@@ -1,18 +1,49 @@
 import React, { useState, useEffect } from "react";
 import MenuBarV2 from "../../GeneralComponents/MenubarV2.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { GrFormAdd } from "react-icons/gr";
-
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
-  const [openDropDown, setOpenDropdown] = useState(false);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const bookingCount = "";
+  const formatDateTime = (dateTime) => {
+    const options = {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    return new Date(dateTime).toLocaleString("en-US", options);
+  };
+
+  const formatService = (service) => {
+    switch (service) {
+      case 'metalCeramicBraces':
+        return 'Metal & Ceramic Braces';
+      case 'teethWhitening':
+        return 'Teeth Whitening';
+      case 'anteriorFixedVeneers':
+        return 'Anterior Fixed Bridge & Veneers';
+      case 'toothMolarExtraction':
+        return 'Tooth/Molar Extraction';
+      case 'oralProphylaxis':
+        return 'Oral Prophylaxis';
+      case 'toothRestoration':
+        return 'Tooth Restoration';
+      case 'diastemaClosure':
+        return 'Diastema Closure';
+      case 'orthodonticTreatment':
+        return 'Orthodontic Treatment';
+      default:
+        return service;
+    }
+  };
 
   useEffect(() => {
     const checkToken = async () => {
@@ -27,18 +58,17 @@ const MyAppointments = () => {
             },
           });
           if (response.ok) {
-            setIsLoggedIn(true);
-            const response = await fetch("http://127.0.0.1:8000/user/", {
+            const userResponse = await fetch("http://127.0.0.1:8000/user/", {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Token ${sessionStorage.getItem("authToken")}`,
+                Authorization: `Token ${token}`,
               },
             });
-            const data = await response.json();
-            setUsername(data);
+            const userData = await userResponse.json();
+            setUsername(userData);
 
-            const response2 = await fetch(
+            const appointmentsResponse = await fetch(
               "http://127.0.0.1:8000/api/appointments/",
               {
                 method: "GET",
@@ -48,30 +78,52 @@ const MyAppointments = () => {
                 },
               }
             );
-            const data2 = await response2.json();
-            setAppointments(data2);
+            const appointmentsData = await appointmentsResponse.json();
+            setAppointments(appointmentsData);
           } else {
-            setIsLoggedIn(false);
             navigate("/");
           }
         } else {
-          setIsLoggedIn(false);
           navigate("/");
         }
       } catch (error) {
         console.error("Error checking token:", error);
-        setIsLoggedIn(false);
       } finally {
         setLoading(false);
       }
     };
 
     checkToken();
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleAppointmentClick = (appointment) => {
+    navigate("/MyAppointments/ViewAppointment", { state: { appointment, username, bookingCount: appointments.length } });
+  };
+
+  const handleDeleteAppointment = async (id) => {
+    try {
+      const token = sessionStorage.getItem("authToken");
+      const response = await fetch("http://127.0.0.1:8000/api/delete_appointment/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+        },
+        body: JSON.stringify({ id: id }), 
+      });
+      if (response.ok) {
+        setAppointments(appointments.filter(appointment => appointment.id !== id));
+      } else {
+        console.error("Failed to delete appointment");
+      }
+    } catch (error) {
+      console.error("Error deleting appointment:", error);
+    }
+  };
 
   return (
     <div>
@@ -82,40 +134,50 @@ const MyAppointments = () => {
         <div className="flex flex-row justify-between">
           <div>
             <h2 className="font-semibold text-[31px]">
-              Bookings (<span>1</span>)
+              Bookings({appointments.length})
             </h2>
           </div>
-          <Link to="/MakeApppointment" className="hover:bg-slate-200 rounded-lg  flex items-center mr-2 p-2">
-            <GrFormAdd fontSize={25}/>
-            <span className="ml-1 pb-[1px] font-semibold pr-1">New appointment</span>
+          <Link
+            to="/MakeAppointment"
+            className="hover:bg-slate-200 rounded-lg  flex items-center mr-2 p-2"
+          >
+            <GrFormAdd fontSize={25} />
+            <span className="ml-1 pb-[1px] font-semibold pr-1">
+              New appointment
+            </span>
           </Link>
         </div>
-        {/* Booking conatiner list */}
+        {/* Booking container list */}
         {appointments.map((appointment) => (
-          <Link to="/MyAppointments/ViewAppointment"
+          <div
             key={appointment.id}
-            className="hover:bg-zinc-100 border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4"
+            onClick={() => handleAppointmentClick(appointment)}
+            className="hover:bg-zinc-100 border-solid border-[0.2px] rounded-[16px] flex justify-between flex-row shadow-md mt-4 cursor-pointer"
           >
             <div className="px-6 py-3">
               <h3 className="font-bold text-[32px] text-[#404040]">
-                {appointment.service}
+                {formatService(appointment.service)}
               </h3>
               <h6 className="text-[10px] mt-[-6px]">
-                Created: <span>{appointment.first_name}</span>
+                Created:{" "}
+                <span>{formatDateTime(appointment.created_at)}</span>
               </h6>
             </div>
 
             {/* Trashcan */}
-            <div className=" flex justify-center place-items-center pr-6">
-              <FaTrash color="#AD0202" fontSize={20} />
+            <div className=" flex justify-center place-items-center pr-6 hover:opacity-50">
+              <FaTrash
+                color="#AD0202"
+                fontSize={20}
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  handleDeleteAppointment(appointment.id);
+                }}
+              />
             </div>
-          </Link>
+          </div>
         ))}
       </div>
-
-      {openDropDown && (
-        <div className="absolute bg-[#FFFFFF] right-14 top-[16rem]"></div>
-      )}
     </div>
   );
 };

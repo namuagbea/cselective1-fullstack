@@ -1,84 +1,130 @@
-import React from 'react'
+import React from 'react';
 import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx';
 import { IoMdCalendar } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { GrLocationPin } from "react-icons/gr";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const ViewMyAppointments = () => {
+  const location = useLocation();
+  const appointment = location.state && location.state.appointment;
+  const username = location.state && location.state.username;
+  const bookingCount = location.state && location.state.bookingCount;
 
+  const formatField = (fieldName, fieldValue) => {
+    switch (fieldName) {
+      case 'dentist':
+        return capitalizeNames(fieldValue);
+      case 'service':
+        return formatService(fieldValue);
+      default:
+        return fieldValue;
+    }
+  };
+
+  const capitalizeNames = (name) => {
+    return name
+      .split(/(?=[A-Z])/)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  };
+
+  const formatService = (service) => {
+    switch (service) {
+      case 'metalCeramicBraces':
+        return 'Metal & Ceramic Braces';
+      case 'teethWhitening':
+        return 'Teeth Whitening';
+      case 'anteriorFixedVeneers':
+        return 'Anterior Fixed Bridge & Veneers';
+      case 'toothMolarExtraction':
+        return 'Tooth/Molar Extraction';
+      case 'oralProphylaxis':
+        return 'Oral Prophylaxis';
+      case 'toothRestoration':
+        return 'Tooth Restoration';
+      case 'diastemaClosure':
+        return 'Diastema Closure';
+      case 'orthodonticTreatment':
+        return 'Orthodontic Treatment';
+      default:
+        return service;
+    }
+  };
+
+  const formatDateTime = (dateTime) => {
+    const options = {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    const dateObject = new Date(dateTime);
+    const date = dateObject.toLocaleDateString("en-US", options);
+    const time = dateObject.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit' });
+    return { date, time };
+  };
 
   return (
     <div className='h-full w-full'>
       <div className='bg-[#1E456A] '>
-        <MenuBarV2 />
+        <MenuBarV2 username={username}/>
       </div>
       <Link to='/MyAppointments' className='p-10 flex flex-row'>
         <div className='flex place-items-center justify-center mr-1 mt-1'>
           <IoIosArrowBack fontSize={25} />
-
         </div>
-        <h2 className='font-semibold text-[31px]'>View Booking (<span>1</span>)</h2>
+        <h2 className='font-semibold text-[31px]'>View Booking({bookingCount})</h2>
       </Link>
 
-      {/* Appoinment information container */}
-
-
-      <div className='bg-[#FFFFFF] border-2 flex flex-col justify-center mx-36 rounded-lg shadow-md'>
-        <div className='flex'>
-          <div className='w-full'>
-            <h3 className='font-bold text-[28px] text-[#353535] text-center mt-8'>Appointment Details</h3>
-
-          </div>
-
-
-
-        </div>
-        
-        {/* contents */}
-        <div className='flex flex-row justify-evenly mx-20 my-10 '>
-          <div className='w-full flex gap-y-5 flex-col'>
-            <div>
-              <h5 className='font-medium text-[16px]'>Type of Service: </h5>
-              <span className='font-bold text-[22px]'>Metal & Ceramic Braces</span>
-            </div>
-
-            <div>
-              <h5 className='font-medium text-[16px]'>Dentist: </h5>
-              <span className='font-bold text-[22px]'>Dr. Karl Nigel Subido RD.</span>
+      {/* Appointment information container */}
+      {appointment && (
+        <div className='bg-[#FFFFFF] border-2 flex flex-col justify-center mx-36 rounded-lg shadow-md'>
+          <div className='flex'>
+            <div className='w-full'>
+              <h3 className='font-bold text-[28px] text-[#353535] text-center mt-8'>Appointment Details</h3>
             </div>
           </div>
+          
+          {/* Contents */}
+          <div className='flex flex-row justify-evenly mx-20 my-10 '>
+            <div className='w-full flex gap-y-5 flex-col'>
+              <div>
+                <h5 className='font-medium text-[16px]'>Type of Service:</h5>
+                <span className='font-bold text-[22px]'>{formatField('service', appointment.service)}</span>
+              </div>
+              <div>
+                <h5 className='font-medium text-[16px]'>Dentist:</h5>
+                <span className='font-bold text-[22px]'><span>Dr. </span>{formatField('dentist', appointment.dentist)}</span>
+              </div>
+            </div>
 
-          <div className='flex w-full justify-center flex-col gap-y-3'>
-            <div className='inline-flex'>
-              <IoMdCalendar color="#118948" fontSize="2.5em" />
-              <span className='font-medium text-[22px] ml-2'>March 30, 2024</span>
-            </div>
-            <div className='inline-flex'>
-              <FaRegClock color="#52CCB6" fontSize="2.5em" />
-              <span className='font-medium text-[22px] ml-2 '>9:00 A.M.</span>
-            </div>
-            <div className='inline-flex'>
-              <GrLocationPin color="#C91D1D" fontSize="3.9em" />
-              <span className='font-normal text-[16px] ml-2'>Door 3, D&E Prime Building, Robredo Avenue, 3rd Blk., Purok Yellowbell, Brgy. Sta. Cruz, Koronadal Proper, Philippines.</span>
+            <div className='flex w-full justify-center flex-col gap-y-3'>
+              <div className='inline-flex'>
+                <IoMdCalendar color="#118948" fontSize="2.5em" />
+                <span className='font-medium text-[22px] ml-2'>{formatDateTime(appointment.date).date}</span>
+              </div>
+              <div className='inline-flex'>
+                <FaRegClock color="#52CCB6" fontSize="2.5em" />
+                <span className='font-medium text-[22px] ml-2'>{formatDateTime(appointment.date).time}</span>
+              </div>
+              <div className='inline-flex'>
+                <GrLocationPin color="#C91D1D" fontSize="3em" />
+                <span className='font-medium text-[22px] '>{appointment.address}</span>
+              </div>
             </div>
           </div>
 
+          <div className='text-center mt-2 mb-8'>
+            <h6 className='text-[10px] text-[#767676] mt-[-6px]'>Created: <span>{formatDateTime(appointment.created_at).date}</span></h6>
+          </div>
         </div>
-
-        <div className='text-center mt-2 mb-8'>
-          <h6 className='text-[10px] text-[#767676] mt-[-6px]'>Created: <span>09/14/2025</span></h6>
-        </div>
-
-
-        
-
-      </div>
-      
+      )}
     </div>
-    
-  )
+  );
 }
 
-export default ViewMyAppointments
+export default ViewMyAppointments;

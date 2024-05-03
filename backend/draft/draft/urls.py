@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     path('api/appointments/', views.get_appointments, name='get_appointments'),
     path('api/create_appointments/', views.create_appointment, name='create_appointment'),
+    path('api/delete_appointment/', views.delete_appointment, name='delete_appointment'),
     path('user/', views.get_username),
     path('admin/', admin.site.urls),
     re_path('login', views.login),
