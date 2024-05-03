@@ -5,7 +5,8 @@ import Footer from "../../GeneralComponents/Footer.jsx";
 import "./MakeAppointment.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {ThreeDots} from '@agney/react-loading';
 
 const MyBooking = () => {
   const [username, setUsername] = useState("");
@@ -50,18 +51,18 @@ const MyBooking = () => {
             const data = await response.json();
             setUsername(data);
             console.log(data + " this is the username");
-          }else{
+          } else {
             setIsLoggedIn(false);
             navigate("/");
           }
-        } else{
+        } else {
           setIsLoggedIn(false);
           navigate("/");
         }
       } catch (error) {
         console.error("Error checking token:", error);
         setIsLoggedIn(false);
-      }finally{
+      } finally {
         setLoading(false);
       }
     };
@@ -70,7 +71,12 @@ const MyBooking = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex flex-col place-content-center items-center">
+      
+        <ThreeDots/>
+        <span>please wait...</span>
+      
+    </div>;
   }
 
   const handleChange = (e) => {
@@ -101,10 +107,13 @@ const MyBooking = () => {
       console.error("Error submitting form:", error);
     }
   };
-  
 
-  if(loading) {
-    return <div>Loading...</div>
+
+  if (loading) {
+    return (
+      <div>helo.</div>
+      
+    )
   }
 
   return (
@@ -236,12 +245,12 @@ const MyBooking = () => {
                   <button className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4">
                     Cancel
                   </button>
-                  <button
+                  <Link to="/AppointmentConfirmation"
                     type="submit"
                     className="bg-[#00B3DE] text-white px-6 py-2 rounded-2xl"
                   >
                     Submit
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
