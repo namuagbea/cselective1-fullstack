@@ -62,6 +62,6 @@ Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
 
 GET http://127.0.0.1:8000/api/appointments
 Content-Type: application/json
-Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
+Authorization: Token 62fb46a59205d5284eb4fe0428b00e9331f15df4
 
 {}

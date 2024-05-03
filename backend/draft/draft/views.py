@@ -78,3 +78,23 @@ def get_appointments(request):
 @permission_classes([IsAuthenticated])
 def get_username(request):
     return Response(format(request.user.username))
+
+@api_view(['DELETE'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def delete_appointment(request):
+    try:
+        appointment_id = request.data.get('id')  # Get the appointment ID from the request body
+        appointment = Appointment.objects.get(id=appointment_id)
+    except Appointment.DoesNotExist:
+        return Response({"error": "Appointment does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+    # Check if the user has permission to delete the appointment (you may need to customize this)
+    if request.user != appointment.user:
+        return Response({"error": "You don't have permission to delete this appointment"}, status=status.HTTP_403_FORBIDDEN)
+
+    # Delete the appointment
+    appointment.delete()
+
+    return Response(status=status.HTTP_204_NO_CONTENT)
+

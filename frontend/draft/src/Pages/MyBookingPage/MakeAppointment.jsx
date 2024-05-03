@@ -327,12 +327,12 @@ const MyBooking = () => {
                   <button className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4">
                     Cancel
                   </button>
-                  <div
+                  <button
                     type="submit"
                     className="bg-[#00B3DE] text-white px-6 py-2 rounded-2xl"
                   >
                     Submit
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>

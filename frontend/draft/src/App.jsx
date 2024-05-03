@@ -17,7 +17,7 @@ export default function App() {
         <Route path="/About" element={<LandingPage />} />
         <Route path="/Services" element={<LandingPage />} />
         <Route path="/Contacts" element={<LandingPage />} />
-        <Route path="/MakeApppointment" element={<MakeAppointment />} />
+        <Route path="/MakeAppointment" element={<MakeAppointment />} />
         <Route path="/MyAppointments" element={<MyAppointments />} />
         <Route path="/MyAppointments/ViewAppointment" element={<ViewMyAppointments />} />
         <Route path="/AppointmentConfirmation" element={<AppointmentConfirmation />} />

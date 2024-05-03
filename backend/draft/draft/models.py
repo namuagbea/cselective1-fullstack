@@ -12,3 +12,5 @@ class Appointment(models.Model):
     contact_number = models.CharField(max_length=20)
     address = models.TextField()
     other = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
