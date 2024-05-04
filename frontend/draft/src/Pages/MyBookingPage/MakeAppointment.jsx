@@ -2,7 +2,6 @@ import React from "react";
 import MenubarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import ClinicPictureDark from "../../../media/ClinicPictureDark.png";
 import Footer from "../../GeneralComponents/Footer.jsx";
-import "./MakeAppointment.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";

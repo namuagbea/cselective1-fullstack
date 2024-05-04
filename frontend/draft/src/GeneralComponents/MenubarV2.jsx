@@ -4,40 +4,12 @@ import { FaTimes } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import "react-router-dom";
 
-const MenuBar = ({ onLoginClick, username }) => {
+const MenuBarV2 = ({ onLoginClick, username }) => {
   const [click, setClick] = useState(false);
   const MenuCLick = () => {
     setClick(!click);
   };
   const closeMenu = () => setClick(false);
-
-  // //navigation reponsive
-  // const NavbarContents = (
-  //   <div className="lg:hidden block absolute top-28 w-full left-0 right-0 bg-slate-700 transition">
-  //     <ul className="text-center text-lg p-20">
-  //       <Link spy smooth to="home">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           Home
-  //         </li>
-  //       </Link>
-  //       <Link spy smooth to="about">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           About
-  //         </li>
-  //       </Link>
-  //       <Link spy smooth to="services">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           Services
-  //         </li>
-  //       </Link>
-  //       <Link spy smooth to="contact">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           Contacts
-  //         </li>
-  //       </Link>
-  //     </ul>
-  //   </div>
-  // );
 
   return (
     <div className="lg:z-50 flex justify-between md:justify-between lg:px-6 lg:h-24 lg:py-5 lg:w-full text-white ">
@@ -79,4 +51,4 @@ const MenuBar = ({ onLoginClick, username }) => {
   );
 };
 
-export default MenuBar;
+export default MenuBarV2;
