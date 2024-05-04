@@ -3,6 +3,7 @@ import Services from "./Sections/Services.jsx";
 import About from "./Sections/About.jsx";
 import Contacts from "./Sections/Contacts.jsx";
 import Home from "./Sections/Home.jsx";
+import { Hourglass } from 'react-loader-spinner'
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,7 +53,15 @@ export default function LandingPage() {
 
   if (loading) {
     // Render a loading indicator while fetching the token
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen"><Hourglass
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="hourglass-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      colors={['#306cce', '#72a1ed']}
+    /></div>;
   }
 
   return (

@@ -6,6 +6,8 @@ import { GrFormAdd } from "react-icons/gr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FiLogOut } from "react-icons/fi";
+import { Hourglass } from 'react-loader-spinner'
+
  
 
 
@@ -113,7 +115,15 @@ const MyAppointments = () => {
   }, [navigate]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen"><Hourglass
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="hourglass-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      colors={['#306cce', '#72a1ed']}
+    /></div>;
   }
 
   const handleAppointmentClick = (appointment) => {
