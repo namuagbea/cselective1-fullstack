@@ -1,16 +1,29 @@
-import React from 'react';
-import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx';
+import React, { useState } from "react";
+// import MenuBarV2 from '../../GeneralComponents/MenubarV2.jsx';
 import { IoMdCalendar } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { GrLocationPin } from "react-icons/gr";
 import { IoIosArrowBack } from "react-icons/io";
 import { useLocation, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FiLogOut } from "react-icons/fi";
+
+
 
 const ViewMyAppointments = () => {
   const location = useLocation();
   const appointment = location.state && location.state.appointment;
   const username = location.state && location.state.username;
   const bookingCount = location.state && location.state.bookingCount;
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("authToken");
+    // Call the parent function to update the isLoggedIn state
+    window.location.reload();
+  };
 
   const formatField = (fieldName, fieldValue) => {
     switch (fieldName) {
@@ -71,8 +84,49 @@ const ViewMyAppointments = () => {
   return (
     <div className='h-full w-full'>
       <div className='bg-[#1E456A] '>
-        <MenuBarV2 username={username}/>
+
+        {/* Menubar */}
+        <div className="lg:z-50 flex justify-between md:justify-between lg:px-6 lg:h-24 lg:py-5 lg:w-full text-white ">
+          <div className="flex items-center flex-1 ">
+            <Link to="/" className="flex-row">
+              <span className="lg:text-3xl font-bold mt-1 md:text-xl ">
+                Smile Prime
+              </span>
+            </Link>
+
+            <div className="cursor-pointer lg:flex md:flex md:flex-1 lg:flex-1 items-center justify-end hidden"
+              onClick={() => setDropdownOpen((prev) => !prev)}>
+
+
+              <a
+                className="bg-[#00B3DE] text-[#F1F9FC] px-3 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
+              >
+                <FontAwesomeIcon
+                  icon={faUser}
+                  size="20"
+                  className="text-sm md:text-base"
+                ></FontAwesomeIcon>
+                <span className="ml-2">{username}</span>
+              </a>
+
+              {/* Dropdown menu  */}
+
+              {dropdownOpen && (
+                <div className="absolute text-[#c41a1a] mt-24 right-9 bg-white text-sm text-center py-2 px-2 rounded-lg shadow-md hover:cursor-pointer font-bold">
+                  <ul className="flex flex-row p-1">
+                    <FiLogOut fontSize={20} />
+                    <li className="pl-1" onClick={handleLogout}>
+                      Logout
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+
+
       <Link to='/MyAppointments' className='p-10 flex flex-row'>
         <div className='flex place-items-center justify-center mr-1 mt-1'>
           <IoIosArrowBack fontSize={25} />
