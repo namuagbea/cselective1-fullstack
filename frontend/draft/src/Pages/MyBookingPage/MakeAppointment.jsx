@@ -6,7 +6,7 @@ import "./MakeAppointment.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {ThreeDots} from '@agney/react-loading';
+import { Hourglass } from 'react-loader-spinner'
 
 const MyBooking = () => {
   const [username, setUsername] = useState("");
@@ -72,12 +72,15 @@ const MyBooking = () => {
   }, []);
 
   if (loading) {
-    return <div className="flex flex-col place-content-center items-center">
-      
-        <ThreeDots/>
-        <span>please wait...</span>
-      
-    </div>;
+    return <div className="flex justify-center items-center h-screen"><Hourglass
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="hourglass-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      colors={['#306cce', '#72a1ed']}
+    /></div>;
   }
 
   const handleChange = (e) => {
@@ -111,10 +114,18 @@ const MyBooking = () => {
 
 
   if (loading) {
-    return (
-      <div>helo.</div>
+    return 
+      <div className="flex justify-center items-center h-screen"><Hourglass
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="hourglass-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        colors={['#306cce', '#72a1ed']}
+      /></div>;
       
-    )
+    
   }
 
   return (
@@ -324,9 +335,9 @@ const MyBooking = () => {
                 ></textarea>
 
                 <div className="flex justify-end mt-6">
-                  <button className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4">
+                  <Link to='/MyAppointments' className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4">
                     Cancel
-                  </button>
+                  </Link>
                   <button
                     type="submit"
                     className="bg-[#00B3DE] text-white px-6 py-2 rounded-2xl"
