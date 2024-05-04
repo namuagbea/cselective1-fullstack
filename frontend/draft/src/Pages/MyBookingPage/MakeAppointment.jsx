@@ -4,7 +4,7 @@ import ClinicPictureDark from "../../../media/ClinicPictureDark.png";
 import Footer from "../../GeneralComponents/Footer.jsx";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useFormAction } from "react-router-dom";
 import { Hourglass } from 'react-loader-spinner'
 
 const MyBooking = () => {
@@ -12,6 +12,8 @@ const MyBooking = () => {
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  const { pending } = useFormStatus();
   
 
 
@@ -337,12 +339,16 @@ const MyBooking = () => {
                   <Link to='/MyAppointments' className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4">
                     Cancel
                   </Link>
+
                   <button
                     type="submit"
                     className="bg-[#00B3DE] text-white px-6 py-2 rounded-2xl"
+                    disabled={pending}
+                    
                   >
                     Submit
                   </button>
+                  {pending ? "Submitting..." : "Submit"}
                 </div>
               </div>
             </div>

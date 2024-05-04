@@ -92,6 +92,7 @@ const Login = ({ onClose }) => {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -108,6 +109,7 @@ const Login = ({ onClose }) => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
 
