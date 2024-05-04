@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { Link as LinkTo } from "react-router-dom";
 import DentalLogo from "../Pages/LandingPage/Components/DentalLogo.jsx";
-import { FaTimes } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-import { CiMenuFries } from "react-icons/ci";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,15 +10,6 @@ const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
   // const [click, setClick] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const MenuCLick = () => {
-    setClick(!click);
-  };
-
-  // const closeMenu = () => setClick(false);
-
-  // const toggleDropdown = () => {
-  //   setDropdownOpen(!dropdownOpen);
-  // };
 
   const handleLogout = () => {
     sessionStorage.removeItem("authToken");
@@ -28,49 +17,6 @@ const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
     window.location.reload();
   };
 
-  // // Navigation responsive
-  // const NavbarContents = (
-  //   <div className="lg:hidden block absolute top-28 w-full left-0 right-0 bg-slate-700 transition">
-  //     <ul className="text-center text-lg p-20">
-  //       <Link spy smooth to="home">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           Home
-  //         </li>
-  //       </Link>
-  //       <Link spy smooth to="about">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           About
-  //         </li>
-  //       </Link>
-  //       <Link spy smooth to="services">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           Services
-  //         </li>
-  //       </Link>
-  //       <Link spy smooth to="contact">
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           Contacts
-  //         </li>
-  //       </Link>
-
-  //       {/* Conditional rendering for My Bookings */}
-  //       {isLoggedIn && (
-  //         <li className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded">
-  //           My Bookings
-  //         </li>
-  //       )}
-  //       {/* Conditional rendering for Logout */}
-  //       {isLoggedIn && (
-  //         <li
-  //           className="cursor-pointer my-4 py-4 border-b border-slate-500 hover:bg-slate-200 hover:rounded"
-  //           onClick={handleLogout}
-  //         >
-  //           Logout
-  //         </li>
-  //       )}
-  //     </ul>
-  //   </div>
-  // );
 
   return (
     <div className="lg:z-50 flex justify-between md:justify-between sm:w-full lg:px-6 lg:h-24 lg:py-5 lg:w-full ">
@@ -154,10 +100,6 @@ const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
           </div>
         </div>
       </div>
-      {/* <div>{click && NavbarContents}</div>
-      <button className="block md:hidden transition mr-4" onClick={MenuCLick}>
-        {click ? <FaTimes /> : <CiMenuFries />}
-      </button> */}
     </div>
   );
 };

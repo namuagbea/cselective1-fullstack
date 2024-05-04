@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import MenuBarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { GrFormAdd } from "react-icons/gr";
