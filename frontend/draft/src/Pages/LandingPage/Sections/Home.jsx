@@ -18,7 +18,7 @@ const Home = ({ isLoggedIn, username }) => {
   };
 
   return (
-    <>
+    <div className="h-full">
       <div className="bg-[#F1F9FC]">
         <Headroom className="Menubar">
           <MenuBar onLoginClick={handleOpenLogin} isLoggedIn={isLoggedIn} username={username} />
@@ -83,7 +83,7 @@ const Home = ({ isLoggedIn, username }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
