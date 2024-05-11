@@ -8,6 +8,7 @@ const SignUp = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [retypepass, setRetypePass] = useState("");
   const [showLogin, setShowLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignUp = async (event) => {
     try {
@@ -29,6 +30,11 @@ const SignUp = ({ onClose }) => {
           password,
         }),
       });
+
+      if (!username || !email || !password || !retypepass) {
+        setErrorMessage("Please fill up all fields.");
+        return;
+      }
 
       if (response.ok) {
         // Signup successful
@@ -158,6 +164,13 @@ const SignUp = ({ onClose }) => {
                       onChange={(e) => setRetypePass(e.target.value)}
                     />
                   </div>
+
+                  {errorMessage && (
+                  <div className="text-sm text-red-500 mb-3">
+                    {errorMessage}
+                  </div>
+                )}
+
                 </div>
 
                 {/* Sign up button */}

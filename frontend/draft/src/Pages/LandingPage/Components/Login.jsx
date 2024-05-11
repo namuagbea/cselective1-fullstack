@@ -6,6 +6,7 @@ const Login = ({ onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignUp, setShowSignUp] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async () => {
     try {
@@ -17,6 +18,11 @@ const Login = ({ onClose }) => {
         body: JSON.stringify({ username, password }),
       });
 
+      if (!username || !password) {
+        setErrorMessage("Please fill in both fields.");
+        return;
+      }
+  
       if (response.ok) {
         console.log("Login successful");
         // Token storage here
@@ -111,6 +117,13 @@ const Login = ({ onClose }) => {
                   <span className="text-sm text-white cursor-pointer">
                     Forgot password?
                   </span>
+                  
+                  {errorMessage && (
+                  <div className="text-sm text-red-500">
+                    {errorMessage}
+                  </div>
+                )}
+
                 </div>
 
                 <div className="">
@@ -122,7 +135,7 @@ const Login = ({ onClose }) => {
                 {/* Login button */}
                 <button
                   onClick={handleLogin}
-                  className="text-white lg:text-[18px] md:text-[15px] sm:mt-[5px] md:mt-3 lg:mt-7 sm:text-[12px] bg-sky-900 hover:bg-sky-800 lg:py-2 md:py-1 sm:py-1 rounded-md mb-4 w-full"
+                  className="text-white lg:text-[18px] md:text-[15px] sm:mt-[5px] md:mt-3 lg:mt-1 sm:text-[12px] bg-sky-900 hover:bg-sky-800 lg:py-2 md:py-1 sm:py-1 rounded-md mb-4 w-full"
                 >
                   Login
                 </button>
