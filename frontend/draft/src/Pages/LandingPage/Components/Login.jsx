@@ -19,9 +19,12 @@ const Login = ({ onClose }) => {
   
       if (response.ok) {
         const data = await response.json();
-        const token = data.token; // Assuming your response contains a token field
-        sessionStorage.setItem("authToken", token); // Store the token in session storage
-        console.log("Login successful");
+        const { accessToken, refreshToken } = data; // Extract access token and refresh token from response
+        sessionStorage.setItem("authToken", accessToken);
+        sessionStorage.setItem("refreshToken", refreshToken);
+        console.log("Token stored in sessionStorage:", sessionStorage.getItem("authToken"));
+        console.log("Refresh token stored in sessionStorage:", sessionStorage.getItem("refreshToken"));
+        
         onClose();
         window.location.reload();
       } else {
@@ -33,7 +36,6 @@ const Login = ({ onClose }) => {
     }
   };
   
-
   const handleSignUpClick = () => {
     setShowSignUp(true);
   };

@@ -71,7 +71,7 @@ const MyAppointments = () => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
+              Authorization: `Bearer ${token}`,
             },
           });
           if (response.ok) {
@@ -79,7 +79,7 @@ const MyAppointments = () => {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Token ${token}`,
+                Authorization: `Bearer ${token}`,
               },
             });
             const userData = await userResponse.json();
@@ -91,12 +91,37 @@ const MyAppointments = () => {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Token ${token}`,
+                  Authorization: `Bearer ${token}`,
                 },
               }
             );
             const appointmentsData = await appointmentsResponse.json();
             setAppointments(appointmentsData);
+          } else if (response.status === 401) {
+            setLoading(true);
+            console.log("Token expired, trying to refresh it...");
+            const refreshToken = sessionStorage.getItem("authToken");
+            if (refreshToken) {
+              const refreshResponse = await fetch("http://127.0.0.1:8000/refresh_token/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ refresh_token: refreshToken }),
+              });
+              if (refreshResponse.ok) {
+                const newTokenData = await refreshResponse.json();
+                sessionStorage.setItem("authToken", newTokenData.access_token);
+                setLoading(false);
+                console.log("Token refreshed");
+                checkToken();
+              } else {
+                console.log("Token refresh failed");
+                navigate("/");
+              }
+            } else {
+              navigate("/");
+            }
           } else {
             navigate("/");
           }
@@ -136,7 +161,7 @@ const MyAppointments = () => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ id: id }), 
       });
