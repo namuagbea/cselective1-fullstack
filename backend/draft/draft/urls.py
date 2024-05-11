@@ -13,6 +13,6 @@ urlpatterns = [
     re_path('login', views.login),
     re_path('signup', views.signup),
     re_path('test_token', views.test_token),
-
+    path('refresh_token/', views.refresh_token, name='refresh_token'),
 
 ]

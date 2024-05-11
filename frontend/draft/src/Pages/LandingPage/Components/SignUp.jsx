@@ -31,8 +31,7 @@ const SignUp = ({ onClose }) => {
       });
 
       if (response.ok) {
-        // Signup successful
-        onClose(); // Close the signup modal or navigate to another page
+        onClose();
       } else {
         // Signup failed
         const errorData = await response.json();
