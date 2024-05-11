@@ -43,10 +43,6 @@ const MenuBarV2 = ({ onLoginClick, username }) => {
           </button>
         </div>
       </div>
-      <div>{click && NavbarContents}</div>
-      <button className="block md:hidden transition mr-4" onClick={MenuCLick}>
-        {click ? <FaTimes /> : <CiMenuFries />}
-      </button>
     </div>
   );
 };

@@ -162,6 +162,8 @@ const MyAppointments = () => {
               </span>
             </Link>
 
+
+
             <div className="lg:flex cursor-pointer md:flex md:flex-1 lg:flex-1 items-center justify-end hidden"
               onClick={() => setDropdownOpen((prev) => !prev)}>
 

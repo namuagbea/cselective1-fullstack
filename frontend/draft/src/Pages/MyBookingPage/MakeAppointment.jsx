@@ -154,8 +154,13 @@ const MyBooking = () => {
                 </span>
               </Link>
 
+              
+
               <div className="lg:flex cursor-pointer md:flex md:flex-1 lg:flex-1 items-center justify-end hidden"
                 onClick={() => setDropdownOpen((prev) => !prev)}>
+                <Link className="text-[2.5vh] font-semibold" to="/MyAppointments">
+                  {isLoggedIn && <span>My Bookings</span>}
+                </Link>
 
                 <a
                   className="bg-[#00B3DE] text-[#F1F9FC] px-3 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
