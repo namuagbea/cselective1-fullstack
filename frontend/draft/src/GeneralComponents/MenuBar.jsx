@@ -27,32 +27,34 @@ const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
         </span>
         <div className="flex flex-1 items-center justify-end ">
           <div className="flex-10 ">
-            <ul className="font-normal flex lg:gap-8 md:gap-6 sm:gap-3 lg:text-[18px] md:text-[14px] sm:text-[13px]">
+            <ul className="font-normal p-1 flex lg:gap-8 md:gap-6 sm:gap-3 lg:text-[18px] md:text-[14px] sm:text-[13px]">
               <Link smooth to="home">
                 <li
-                  className="cursor-pointer hover:text-cyan-950 border-b-2 hover:border-fuchsia-100 "
+                  className="cursor-pointer"
                 >
-                  Home
+                  <span className=" hover:text-cyan-950 hover:border-b hover:border-b-cyan-950 ">Home</span>
                 </li>
               </Link>
               <Link smooth to="about">
-                <li className="cursor-pointer">
-                  About
+                <li className="cursor-pointer ">
+                  <span className=" hover:text-cyan-950 hover:border-b hover:border-b-cyan-950 ">About</span>
                 </li>
               </Link>
               <Link smooth to="services">
-                <li className="cursor-pointer">
-                  Services
+                <li className="cursor-pointer ">
+                  <span className=" hover:text-cyan-950 hover:border-b hover:border-b-cyan-950 ">Services</span>
                 </li>
               </Link>
               <Link smooth to="contact">
-                <li className="cursor-pointer">
-                  Contacts
+                <li className="cursor-pointer ">
+                  <span className=" hover:text-cyan-950 hover:border-b hover:border-b-cyan-950 ">Contact</span>
                 </li>
               </Link>
               {/* conditional rendering for My Bookings */}
               <LinkTo to="/MyAppointments">
-                {isLoggedIn && <li>My Bookings</li>}
+                {isLoggedIn && <li className="cursor-pointer">
+                  <span className=" hover:text-cyan-950 hover:border-b hover:border-b-cyan-950 ">My Bookings</span>
+                </li>}
               </LinkTo>
             </ul>
           </div>
@@ -62,7 +64,7 @@ const MenuBar = ({ onLoginClick, isLoggedIn, username }) => {
               <div>
                 <button
                   onClick={onLoginClick}
-                  className="bg-[#1E456A] text-[#F1F9FC] rounded-2xl lg:px-9 lg:py-2 md:px-9 md:py-2 sm:px-6 sm:py-2 sm:text-[13px] lg:text-[18px] md:text-[14px]"
+                  className="bg-[#1E456A] text-[#F1F9FC] rounded-2xl lg:px-9 lg:py-2 md:px-9 md:py-2 sm:px-6 sm:py-2 sm:text-[13px] lg:text-[18px] md:text-[14px] hover:bg-cyan-800"
                 >
                   Login
                 </button>

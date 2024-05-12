@@ -70,9 +70,7 @@ const ViewMyAppointments = () => {
       month: "long",
       day: "numeric",
       year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
+ 
     };
     const dateObject = new Date(dateTime);
     const date = dateObject.toLocaleDateString("en-US", options);

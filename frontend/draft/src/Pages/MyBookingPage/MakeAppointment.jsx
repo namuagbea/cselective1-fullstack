@@ -1,5 +1,4 @@
 import React from "react";
-import MenubarV2 from "../../GeneralComponents/MenubarV2.jsx";
 import ClinicPictureDark from "../../../media/ClinicPictureDark.png";
 import Footer from "../../GeneralComponents/Footer.jsx";
 import axios from "axios";
@@ -14,10 +13,13 @@ const MyBooking = () => {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);//for empty inputs
+
   const navigate = useNavigate();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  
   const handleLogout = () => {
     sessionStorage.removeItem("authToken");
     // Call the parent function to update the isLoggedIn state
@@ -129,6 +131,8 @@ const MyBooking = () => {
   };
 
   const handleSubmit = async (e) => {
+   
+
     e.preventDefault();
     try {
       const token = sessionStorage.getItem("authToken");
@@ -147,21 +151,23 @@ const MyBooking = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
     }
+
+    if (!service || !dentist || !first_name || !last_name || !email || !contact_number) {
+      setErrorMessage("Please fill up all required fields.");
+      return;
+    }
   };
 
   if (loading) {
-    return;
-    <div className="flex justify-center items-center h-screen">
-      <Hourglass
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="hourglass-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-        colors={["#306cce", "#72a1ed"]}
-      />
-    </div>;
+    return <div className="flex justify-center items-center h-screen"><Hourglass
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="hourglass-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      colors={['#306cce', '#72a1ed']}
+    /></div>;
   }
 
   return (
@@ -185,10 +191,12 @@ const MyBooking = () => {
                 onClick={() => setDropdownOpen((prev) => !prev)}
               >
                 <Link
-                  className="text-[2.5vh] font-semibold"
+                  className="text-[2.5vh] font-semibold "
                   to="/MyAppointments"
+                  
                 >
-                  {isLoggedIn && <span>My Bookings</span>}
+                  {isLoggedIn && <span className="hover:border-b hover:border-white duration-100">My Bookings</span>}
+                  
                 </Link>
 
                 <a className="bg-[#00B3DE] text-[#F1F9FC] px-3 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl">
@@ -226,20 +234,24 @@ const MyBooking = () => {
           <p className="text-lg">confirm your appointment!</p>
         </div>
 
-        <div className="relative top-full left-1/2 transform -translate-x-1/2 bg-white bg-opacity-75 rounded-lg p-8 w-3/4">
+        <div className="flex justify-center">
+          <div className="pt-16 mx-2 bg-white bg-opacity-75 rounded-lg p-8 w-[80vw]">
           <h2 className="text-2xl font-bold mb-4 text-center">
             Book Appointment
           </h2>
 
-          <form onSubmit={handleSubmit}>
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="pt-10">
             <div className="grid grid-cols-2 gap-4">
               <div className="mx-5">
-                <h3 className="font-bold mb-2">Type of Service</h3>
+                {/* Type of Service */}
+                <h3 className="font-bold mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]">Type of Service</h3>
                 <select
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
                   className="w-full rounded-lg border p-2 text-gray-400"
+                  required
                 >
                   <option value="">Select a service</option>
                   <option value="metalCeramicBraces">
@@ -260,12 +272,14 @@ const MyBooking = () => {
                   </option>
                 </select>
 
-                <h3 className="font-bold mt-4 mb-2 ">Dentist</h3>
+                {/* Select Dentist */}
+                <h3 className="font-bold mt-4 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79] ">Dentist</h3>
                 <select
                   name="dentist"
                   value={formData.dentist}
                   onChange={handleChange}
                   className="w-full rounded-lg border p-2 text-gray-400"
+                  required
                 >
                   <option value="">Select a dentist</option>
                   <option value="karlSubido">Dr. Karl Nigel Subido</option>
@@ -279,21 +293,69 @@ const MyBooking = () => {
                   </option>
                 </select>
 
-                <h3 className="font-bold mt-4 mb-2">Date</h3>
+                <h3 className="font-bold mt-4 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]">Date</h3>
                 <input
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
                   type="date"
-                  className="w-full rounded-lg border p-2 text-gray-400"
+                  className="w-full rounded-lg border p-2 text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#224F79]"
+                  required
                 />
 
-                <h3 className="font-bold mt-4 mb-2">Pick your time</h3>
 
+                {/* Select Time */}
+                <h3 className="font-bold mt-4 mb-2">Pick your time</h3>
                 <ul
                   id="timetable"
                   className="grid w-full grid-cols-3 gap-2 mb-5"
+                  aria-required
                 >
+                  <li>
+                    <input
+                      type="radio"
+                      id="8-30-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="8-30-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      8:30 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="9-00-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="9-00-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      9:00 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="9-30-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="9-30-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      9:30 AM
+                    </label>
+                  </li>
                   <li>
                     <input
                       type="radio"
@@ -304,7 +366,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="10-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       10:00 AM
                     </label>
@@ -319,7 +381,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="10-30-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       10:30 AM
                     </label>
@@ -334,7 +396,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="11-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       11:00 AM
                     </label>
@@ -349,7 +411,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="11-30-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       11:30 AM
                     </label>
@@ -365,7 +427,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="12-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       12:00 AM
                     </label>
@@ -380,7 +442,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="12-30-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       12:30 PM
                     </label>
@@ -395,7 +457,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="1-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       01:00 PM
                     </label>
@@ -410,7 +472,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="1-30-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       01:30 PM
                     </label>
@@ -425,7 +487,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="2-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       02:00 PM
                     </label>
@@ -440,7 +502,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="2-30-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       02:30 PM
                     </label>
@@ -455,7 +517,7 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="3-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       03:00 PM
                     </label>
@@ -470,9 +532,54 @@ const MyBooking = () => {
                     />
                     <label
                       htmlFor="3-30-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
                     >
                       03:30 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="4-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="4-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      4:00 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="4-30-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="4-30-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      4:30 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="5-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="5-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-100 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      5:00 AM
                     </label>
                   </li>
                 </ul>
@@ -480,52 +587,70 @@ const MyBooking = () => {
 
               <div className="mx-5">
                 <h3 className="font-bold mb-2">Personal Information</h3>
+                {/* Firstname */}
                 <input
                   name="first_name"
                   value={formData.firstName}
                   onChange={handleChange}
                   type="text"
                   placeholder="First Name"
-                  className="w-full rounded-lg border p-2 mb-2"
+                  className="w-full rounded-lg border p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]"
+                  required
                 />
+                {/* Lastname */}
                 <input
                   name="last_name"
                   value={formData.lastName}
                   onChange={handleChange}
                   type="text"
                   placeholder="Last Name"
-                  className="w-full rounded-lg border p-2 mb-2"
+                  className="w-full rounded-lg border p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]"
+                  required
                 />
+                {/* Email */}
                 <input
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   type="email"
                   placeholder="Email"
-                  className="w-full rounded-lg border p-2 mb-2"
+                  className="w-full rounded-lg border p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]"
+                  required
                 />
+                {/* Contact Number */}
                 <input
                   name="contact_number"
                   value={formData.contactNumber}
                   onChange={handleChange}
                   type="tel"
                   placeholder="Contact Number"
-                  className="w-full rounded-lg border p-2 mb-2"
+                  className="w-full rounded-lg border p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79] "
+                  required
                 />
+                {/* Address */}
                 <textarea
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="Address"
-                  className="w-full rounded-lg border p-2 mb-2"
+                  className="w-full rounded-lg h-28 border p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]"
                 ></textarea>
+                {/* Other */}
                 <textarea
                   name="other"
                   value={formData.other}
                   onChange={handleChange}
                   placeholder="Other"
-                  className="w-full rounded-lg border p-2 mb-2"
+                  className="w-full h-20 rounded-lg border p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-[#224F79]"
                 ></textarea>
+
+                <div>
+                  {errorMessage && (
+                    <div className="text-sm text-[#d56751] font-semibold flex justify-center">
+                      Please fill necessary inputs
+                    </div>
+                  )}
+                </div>
 
                 <div className="flex justify-end mt-6">
                   <Link
@@ -545,8 +670,8 @@ const MyBooking = () => {
               </div>
             </div>
           </form>
-        </div>
-        <div className="mt-5">
+        </div></div>
+        <div className="mt-10">
           <Footer />
         </div>
       </div>
