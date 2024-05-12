@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 import { GrFormAdd } from "react-icons/gr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -24,9 +24,6 @@ const MyAppointments = () => {
     window.location.reload();
   };
 
-
-
-  const bookingCount = "";
   const formatDateTime = (dateTime) => {
     const options = {
       month: "long",
@@ -155,6 +152,7 @@ const MyAppointments = () => {
   };
 
   const handleDeleteAppointment = async (id) => {
+    
     try {
       const token = sessionStorage.getItem("authToken");
       const response = await fetch("http://127.0.0.1:8000/api/delete_appointment/", {
@@ -167,6 +165,7 @@ const MyAppointments = () => {
       });
       if (response.ok) {
         setAppointments(appointments.filter(appointment => appointment.id !== id));
+        
       } else {
         console.error("Failed to delete appointment");
       }
@@ -255,10 +254,10 @@ const MyAppointments = () => {
             </div>
 
             {/* Trashcan */}
-            <div className=" flex justify-center place-items-center pr-6 hover:opacity-50">
-              <FaTrash
+            <div className=" flex justify-center place-items-center pr-6 ">
+              <MdCancel
                 color="#AD0202"
-                fontSize={20}
+                fontSize={40}
                 onClick={(e) => {
                   e.stopPropagation(); 
                   handleDeleteAppointment(appointment.id);

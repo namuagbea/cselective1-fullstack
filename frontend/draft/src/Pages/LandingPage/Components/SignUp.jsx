@@ -8,16 +8,16 @@ const SignUp = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [retypepass, setRetypePass] = useState("");
   const [showLogin, setShowLogin] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSignUp = async (event) => {
     try {
       if (password !== retypepass) {
         event.preventDefault();
-        console.error("Passwords do not match");
-
+        setErrorMessage('Password');
         return;
       }
+
       console.log("went thru");
       const response = await fetch("http://127.0.0.1:8000/signup", {
         method: "POST",
@@ -158,7 +158,7 @@ const SignUp = ({ onClose }) => {
                       Re-type Password
                     </label>
                     <input
-                      className="shadow lg:h-[4vh] lg:p-2 appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className=" peer-[]: shadow lg:h-[4vh] lg:p-2 appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       id="retypepass"
                       type="password"
                       value={retypepass}
@@ -166,14 +166,19 @@ const SignUp = ({ onClose }) => {
                       required
                     />
                   </div>
-
-                  {errorMessage && (
-                  <div className="text-sm text-red-500 mb-3">
-                    {errorMessage}
+                  <div>
+                    {errorMessage && (
+                      <div className="text-sm text-[#d56751] font-semibold flex justify-center">
+                        Passwords does not match!
+                      </div>
+                    )}
                   </div>
-                )}
+
+
 
                 </div>
+
+
 
                 {/* Sign up button */}
 

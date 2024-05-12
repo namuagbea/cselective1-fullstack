@@ -6,7 +6,8 @@ const Login = ({ onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignUp, setShowSignUp] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // for wrong credentials
+  const [errorMessageLogin, setErrorMessageLogin] = useState(''); // for empty input feild
 
   const handleLogin = async () => {
     try {
@@ -20,11 +21,11 @@ const Login = ({ onClose }) => {
 
 
       if (!username || !password) {
-        setErrorMessage("Please fill in both fields.");
+        setErrorMessageLogin("Please fill in both fields.");
         return;
       }
 
-  
+
       if (response.ok) {
         const data = await response.json();
         const { accessToken, refreshToken } = data; // Extract access token and refresh token from response
@@ -32,18 +33,19 @@ const Login = ({ onClose }) => {
         sessionStorage.setItem("refreshToken", refreshToken);
         console.log("Token stored in sessionStorage:", sessionStorage.getItem("authToken"));
         console.log("Refresh token stored in sessionStorage:", sessionStorage.getItem("refreshToken"));
-        
+
         onClose();
         window.location.reload();
       } else {
         const errorData = await response.json();
-        console.error("Login failed:", errorData);
+        setErrorMessage("Login failed:", errorData);
+        return;
       }
     } catch (error) {
       console.error("Error during login:", error);
     }
   };
-  
+
   const handleSignUpClick = () => {
     setShowSignUp(true);
   };
@@ -119,20 +121,25 @@ const Login = ({ onClose }) => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onFocus={()=>{setErrorMessageLogin(false)}}
                     required
                   />
                 </div>
 
-                <div className="my-2">
-                  <span className="text-sm text-white cursor-pointer">
-                    Forgot password?
-                  </span>
-                  
+                <div className=" text-center">
+
                   {errorMessage && (
-                  <div className="text-sm text-red-500">
-                    {errorMessage}
-                  </div>
-                )}
+                    <span className="text-md text-red-500">
+                      Invalid Credentials
+                    </span>
+                  )}
+
+                  {errorMessageLogin && (
+                    <span className="text-md text-red-500">
+                      Please Input the Required Fields
+                    </span>
+                  )}
+
 
                 </div>
 

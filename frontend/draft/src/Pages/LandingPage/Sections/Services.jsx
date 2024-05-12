@@ -9,11 +9,11 @@ const Services = () => {
         {/* SERVICES CARDS */}
 
         {/* 1st row */}
-        <div className='flex lg:flex-col md:flex-col sm:flex-col lg:pl-16 md:pl-12 sm:pl-7 lg:py-16 md:py-10 sm:py-6 lg:gap-y-8 md:gap-y-5 sm:gap-y-2'>
-          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-3'>
+        <div className='flex lg:flex-col md:flex-col sm:flex-col lg:pl-16 md:pl-12 sm:pl-7 lg:py-16 md:py-10 sm:py-6 lg:gap-y-8 md:gap-y-5 sm:gap-y-12 sm:mb-12'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-8'>
             {/* Braces */}
-            <div>
-              <div className='bg-[#52B9CC] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://askthedentist.com/ceramic-braces/'>
+              <div className='hover:bg-[#34d4f0] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#52B9CC] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Metal & Ceramic Braces</h2>
                 </div>
@@ -24,10 +24,10 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
             {/* Whitening */}
-            <div className='place-content-end'>
-              <div className='bg-[#4E97FD] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://www.dentaly.org/us/teeth-whitening/' className='place-content-end'>
+              <div className='hover:bg-[#66a6ff] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#4E97FD] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Teeth Whitening</h2>
                 </div>
@@ -38,15 +38,15 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* 2nd row */}
 
-          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-3'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-8'>
             {/* Anterior */}
-            <div>
-              <div className='bg-[#8D91FF] lg:h-[350px] lg:w-[270px] md:w-[200px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://www.verywellhealth.com/dental-bridge-4777662'>
+              <div className='hover:bg-[#7277fc] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#8D91FF] lg:h-[350px] lg:w-[270px] md:w-[200px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Anterior Fixed Bridge & Veneers</h2>
                 </div>
@@ -58,9 +58,9 @@ const Services = () => {
                 </div>
               </div>
               {/* Extraction */}
-            </div>
-            <div className='place-content-end'>
-              <div className='bg-[#52CCB6] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] place-content-end rounded-[30px] shadow-xl'>
+            </a>
+            <a href='https://askthedentist.com/tooth-extraction/' className='place-content-end'>
+              <div className='hover:bg-[#33e5c4] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#52CCB6] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Tooth/Molar extraction</h2>
                 </div>
@@ -71,15 +71,15 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* 3rd row */}
 
-          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-3'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-8'>
             {/* Prophylaxis */}
-            <div>
-              <div className='bg-[#52B9CC] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://www.newmouth.com/oral-health/prophylaxis/'>
+              <div className='hover:bg-[#3fc7df] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#52B9CC] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Oral Prophylaxis</h2>
                 </div>
@@ -90,11 +90,11 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Restoration */}
-            <div className='place-content-end'>
-              <div className='bg-[#4E97FD] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://www.healthline.com/health/dental-and-oral-health/tooth-restoration' className='place-content-end'>
+              <div className='hover:bg-[#73adff] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#4E97FD] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Tooth Restoration</h2>
                 </div>
@@ -106,15 +106,15 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* 4th row */}
 
-          <div className='flex md:flex-row  sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-2'>
+          <div className='flex md:flex-row sm:flex-col lg:h-[400px] md:h-[300px] sm:h-[650px] lg:flex-row lg:gap-10 md:gap-6 sm:gap-8'>
             {/* Closure */}
-            <div>
-              <div className='bg-[#8D91FF] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://www.dentaly.org/us/malocclusion-crooked-teeth/diastema-gaps-teeth/'>
+              <div className='hover:bg-[#a4a7fe] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#8D91FF] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Diastema Closure</h2>
                 </div>
@@ -125,11 +125,11 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Otrhodontic */}
-            <div className='place-content-end'>
-              <div className='bg-[#52CCB6] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] place-content-end rounded-[30px] shadow-xl'>
+            <a href='https://hellodoctor.com.ph/oral-health/cosmetic-dentistry/orthodontic-braces/' className='place-content-end'>
+              <div className='hover:bg-[#33e5c4] hover:-translate-y-1 hover:scale-105 duration-300 bg-[#52CCB6] lg:w-[270px] md:w-[200px] lg:h-[350px] md:h-[260px] sm:w-[240px] sm:h-[320px] opacity-[70%] hover:opacity-100 place-content-end rounded-[30px] shadow-xl'>
                 <div className='font-bold px-4'>
                   <h2 className='lg:text-[27px] md:text-[15px] sm:text-[17px] lg:leading-7 md:leading-4 sm:leading-4 '>Otrhodontic Treatment</h2>
                 </div>
@@ -141,7 +141,7 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 

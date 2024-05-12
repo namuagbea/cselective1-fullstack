@@ -62,14 +62,15 @@ const Home = ({ isLoggedIn, username }) => {
               {!isLoggedIn && (
                 <button
                   onClick={handleOpenLogin}
-                  className=" transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 sm:px-3 sm:py-1 rounded-full lg:text-lg md:text-[15px] sm:text-[9px] font-semibold"
+                  className=" transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 lg:px-4 lg:py-2 md:px-4 md:py-2 sm:px-3 sm:py-1 rounded-full lg:text-lg md:text-[15px] sm:text-[9px] font-semibold"
                 >
                   Make Appointment
                 </button>
               )}
               {isLoggedIn && (
                 <Link to="/MakeAppointment">
-                  <button className="transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 px-4 py-2 sm:px-3 sm:py-1 rounded-full lg:text-lg md:text-[15px] sm:text-[9px] font-semibold">
+                  <button 
+                  className=" transition delay-150 hover:-translate-y-1 text-white bg-sky-900 hover:bg-cyan-800 lg:px-4 lg:py-2 md:px-4 md:py-2 sm:px-3 sm:py-1 rounded-full lg:text-lg md:text-[15px] sm:text-[9px] font-semibold">
                     Make Appointment
                   </button>
                 </Link>
