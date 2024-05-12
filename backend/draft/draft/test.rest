@@ -2,8 +2,8 @@ POST http://127.0.0.1:8000/login
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "admin"
+    "username": "admin1",
+    "password": "admin1"
 }
 
 
@@ -24,8 +24,51 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/test_token
 Content-Type: application/json
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1NDM1ODQ5LCJpYXQiOjE3MTU0MzU1NDksImp0aSI6ImQ5MDA0MDY1MmQxMDQ0NTg4MTAwYjhkZmEzZjliMTNiIiwidXNlcl9pZCI6NX0.ZJ6bHkt3zegzQUa3OgyX0dRsZ9ryhc-yWi8TySmxBQU
+
+{}
+
+
+###
+
+
+POST http://127.0.0.1:8000/api/create_appointments/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1NDM5ODA4LCJpYXQiOjE3MTU0Mzk1MDgsImp0aSI6ImZjYWU3ZjgyZDk3NzRhN2NiZWU0ZTNjODJiM2FlNTAxIiwidXNlcl9pZCI6NX0.YkElpxpjVwKbh7qBXXlJKE5jDwUbt5Wn9-hg9wX4q3U
+
 {
-    "token": "209c5c9e312cd19b04f5ce825e499b94ec863178"
+  "service": "metalCeramicBraces",
+  "dentist": "karlSubido",
+  "date": "2024-04-30T15:30:00Z",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "johndoe@example.com",
+  "contact_number": "1234567890",
+  "address": "123 Main St, City",
+  "other": "Additional information about the appointment"
 }
 
+
+###
+
+
+GET http://127.0.0.1:8000/user/
+Content-Type: application/json
+Authorization: Token d2caf7173096ad0879922201517b46a266de2a46
+
+{}
+
+###
+
+GET http://127.0.0.1:8000/api/appointments
+Content-Type: application/json
+Authorization: Token 62fb46a59205d5284eb4fe0428b00e9331f15df4
+
+{}
+
+
+###
+
+POST http://127.0.0.1:8000/refresh_token/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1NDM1ODQ5LCJpYXQiOjE3MTU0MzU1NDksImp0aSI6ImQ5MDA0MDY1MmQxMDQ0NTg4MTAwYjhkZmEzZjliMTNiIiwidXNlcl9pZCI6NX0.ZJ6bHkt3zegzQUa3OgyX0dRsZ9ryhc-yWi8TySmxBQU

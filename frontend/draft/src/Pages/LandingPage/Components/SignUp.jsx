@@ -19,7 +19,7 @@ const SignUp = ({ onClose }) => {
         return;
       }
       console.log("went thru");
-      const response = await fetch(".", {
+      const response = await fetch("http://127.0.0.1:8000/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,8 +37,7 @@ const SignUp = ({ onClose }) => {
       }
 
       if (response.ok) {
-        // Signup successful
-        onClose(); // Close the signup modal or navigate to another page
+        onClose();
       } else {
         // Signup failed
         const errorData = await response.json();
@@ -130,6 +129,7 @@ const SignUp = ({ onClose }) => {
                       type="text"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
 
@@ -146,6 +146,7 @@ const SignUp = ({ onClose }) => {
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
                   </div>
 
@@ -162,6 +163,7 @@ const SignUp = ({ onClose }) => {
                       type="password"
                       value={retypepass}
                       onChange={(e) => setRetypePass(e.target.value)}
+                      required
                     />
                   </div>
 

@@ -18,15 +18,23 @@ const Login = ({ onClose }) => {
         body: JSON.stringify({ username, password }),
       });
 
+
       if (!username || !password) {
         setErrorMessage("Please fill in both fields.");
         return;
       }
+
   
       if (response.ok) {
-        console.log("Login successful");
-        // Token storage here
+        const data = await response.json();
+        const { accessToken, refreshToken } = data; // Extract access token and refresh token from response
+        sessionStorage.setItem("authToken", accessToken);
+        sessionStorage.setItem("refreshToken", refreshToken);
+        console.log("Token stored in sessionStorage:", sessionStorage.getItem("authToken"));
+        console.log("Refresh token stored in sessionStorage:", sessionStorage.getItem("refreshToken"));
+        
         onClose();
+        window.location.reload();
       } else {
         const errorData = await response.json();
         console.error("Login failed:", errorData);
@@ -35,7 +43,7 @@ const Login = ({ onClose }) => {
       console.error("Error during login:", error);
     }
   };
-
+  
   const handleSignUpClick = () => {
     setShowSignUp(true);
   };
@@ -94,6 +102,7 @@ const Login = ({ onClose }) => {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -110,6 +119,7 @@ const Login = ({ onClose }) => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -124,12 +134,6 @@ const Login = ({ onClose }) => {
                   </div>
                 )}
 
-                </div>
-
-                <div className="">
-                  <span className="lg:text-sm md:text-[11px] sm:text-[10px] text-white cursor-pointer">
-                    Forgot password?
-                  </span>
                 </div>
 
                 {/* Login button */}
