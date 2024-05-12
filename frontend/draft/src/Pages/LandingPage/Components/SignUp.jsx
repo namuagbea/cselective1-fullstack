@@ -8,6 +8,7 @@ const SignUp = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [retypepass, setRetypePass] = useState("");
   const [showLogin, setShowLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignUp = async (event) => {
     try {
@@ -30,9 +31,13 @@ const SignUp = ({ onClose }) => {
         }),
       });
 
+      if (!username || !email || !password || !retypepass) {
+        setErrorMessage("Please fill up all fields.");
+        return;
+      }
+
       if (response.ok) {
-        // Signup successful
-        onClose(); // Close the signup modal or navigate to another page
+        onClose();
       } else {
         // Signup failed
         const errorData = await response.json();
@@ -161,6 +166,13 @@ const SignUp = ({ onClose }) => {
                       required
                     />
                   </div>
+
+                  {errorMessage && (
+                  <div className="text-sm text-red-500 mb-3">
+                    {errorMessage}
+                  </div>
+                )}
+
                 </div>
 
                 {/* Sign up button */}

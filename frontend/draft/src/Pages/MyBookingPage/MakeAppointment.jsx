@@ -5,18 +5,16 @@ import Footer from "../../GeneralComponents/Footer.jsx";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useFormAction } from "react-router-dom";
-import { Hourglass } from 'react-loader-spinner'
+import { Hourglass } from "react-loader-spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FiLogOut } from "react-icons/fi";
-
 
 const MyBooking = () => {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -47,50 +45,79 @@ const MyBooking = () => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
+              Authorization: `Bearer ${token}`,
             },
           });
           if (response.ok) {
             setIsLoggedIn(true);
-            const response = await fetch("http://127.0.0.1:8000/user/", {
+            const userResponse = await fetch("http://127.0.0.1:8000/user/", {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Token ${sessionStorage.getItem("authToken")}`,
+                Authorization: `Bearer ${token}`,
               },
             });
-            const data = await response.json();
-            setUsername(data);
-            console.log(data + " this is the username");
+            const userData = await userResponse.json();
+            setUsername(userData);
+          } else if (response.status === 401) {
+            console.log("Token expired, trying to refresh it...");
+            setLoading(true);
+            const refreshToken = sessionStorage.getItem("refreshToken");
+            if (refreshToken) {
+              const refreshResponse = await fetch("http://127.0.0.1:8000/refresh_token/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ refresh_token: refreshToken }),
+              });
+              console.log("Token fetched");
+              if (refreshResponse.ok) {
+                const newTokenData = await refreshResponse.json();
+                sessionStorage.setItem("authToken", newTokenData.access_token);
+                console.log("Token refreshed");
+                setLoading(false);
+                checkToken();
+              } else {
+                console.log("Token refresh failed");
+                navigate("/");
+              }
+            } else {
+              navigate("/");
+
+            }
           } else {
-            setIsLoggedIn(false);
             navigate("/");
+
           }
         } else {
-          setIsLoggedIn(false);
           navigate("/");
         }
       } catch (error) {
         console.error("Error checking token:", error);
         setIsLoggedIn(false);
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
-
+  
     checkToken();
   }, []);
 
   if (loading) {
-    return <div className="flex justify-center items-center h-screen"><Hourglass
-      visible={true}
-      height="80"
-      width="80"
-      ariaLabel="hourglass-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
-      colors={['#306cce', '#72a1ed']}
-    /></div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Hourglass
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="hourglass-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          colors={["#306cce", "#72a1ed"]}
+        />
+      </div>
+    );
   }
 
   const handleChange = (e) => {
@@ -111,31 +138,30 @@ const MyBooking = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Token ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       console.log(response.data);
-      navigate('/AppointmentConfirmation');
+      navigate("/AppointmentConfirmation");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
-
   if (loading) {
-    return 
-      <div className="flex justify-center items-center h-screen"><Hourglass
+    return;
+    <div className="flex justify-center items-center h-screen">
+      <Hourglass
         visible={true}
         height="80"
         width="80"
         ariaLabel="hourglass-loading"
         wrapperStyle={{}}
         wrapperClass=""
-        colors={['#306cce', '#72a1ed']}
-      /></div>;
-      
-    
+        colors={["#306cce", "#72a1ed"]}
+      />
+    </div>;
   }
 
   return (
@@ -154,17 +180,18 @@ const MyBooking = () => {
                 </span>
               </Link>
 
-              
-
-              <div className="lg:flex cursor-pointer md:flex md:flex-1 lg:flex-1 items-center justify-end hidden"
-                onClick={() => setDropdownOpen((prev) => !prev)}>
-                <Link className="text-[2.5vh] font-semibold" to="/MyAppointments">
+              <div
+                className="lg:flex cursor-pointer md:flex md:flex-1 lg:flex-1 items-center justify-end hidden"
+                onClick={() => setDropdownOpen((prev) => !prev)}
+              >
+                <Link
+                  className="text-[2.5vh] font-semibold"
+                  to="/MyAppointments"
+                >
                   {isLoggedIn && <span>My Bookings</span>}
                 </Link>
 
-                <a
-                  className="bg-[#00B3DE] text-[#F1F9FC] px-3 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl"
-                >
+                <a className="bg-[#00B3DE] text-[#F1F9FC] px-3 py-2 ml-8 md:mr-3 text-[18px] rounded-2xl">
                   <FontAwesomeIcon
                     icon={faUser}
                     size="20"
@@ -185,7 +212,6 @@ const MyBooking = () => {
                     </ul>
                   </div>
                 )}
-
               </div>
             </div>
           </div>
@@ -216,14 +242,22 @@ const MyBooking = () => {
                   className="w-full rounded-lg border p-2 text-gray-400"
                 >
                   <option value="">Select a service</option>
-                  <option value="metalCeramicBraces">Metal & Ceramic Braces</option>
+                  <option value="metalCeramicBraces">
+                    Metal & Ceramic Braces
+                  </option>
                   <option value="teethWhitening">Teeth Whitening</option>
-                  <option value="anteriorFixedVeneers">Anterior Fixed Bridge & Veneers</option>
-                  <option value="toothMolarExtraction">Tooth/Molar Extraction</option>
+                  <option value="anteriorFixedVeneers">
+                    Anterior Fixed Bridge & Veneers
+                  </option>
+                  <option value="toothMolarExtraction">
+                    Tooth/Molar Extraction
+                  </option>
                   <option value="oralProphylaxis">Oral Prophylaxis</option>
                   <option value="toothRestoration">Tooth Restoration</option>
                   <option value="diastemaClosure">Diastema Closure</option>
-                  <option value="orthodonticTreatment">Orthodontic Treatment</option>
+                  <option value="orthodonticTreatment">
+                    Orthodontic Treatment
+                  </option>
                 </select>
 
                 <h3 className="font-bold mt-4 mb-2 ">Dentist</h3>
@@ -234,9 +268,7 @@ const MyBooking = () => {
                   className="w-full rounded-lg border p-2 text-gray-400"
                 >
                   <option value="">Select a dentist</option>
-                  <option value="karlSubido">
-                    Dr. Karl Nigel Subido
-                  </option>
+                  <option value="karlSubido">Dr. Karl Nigel Subido</option>
                   <option value="kristinaUy">Dr. Kristinna Uy</option>
 
                   <option value="robertJohnsonJr">
@@ -255,87 +287,195 @@ const MyBooking = () => {
                   type="date"
                   className="w-full rounded-lg border p-2 text-gray-400"
                 />
-              
+
                 <h3 className="font-bold mt-4 mb-2">Pick your time</h3>
 
-                  <ul id="timetable" className="grid w-full grid-cols-3 gap-2 mb-5">
-                    <li>
-                      <input type="radio" id="10-am" defaultValue className="hidden peer" name="timetable" />
-                    <label htmlFor="10-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        10:00 AM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="10-30-am" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="10-30-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        10:30 AM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="11-am" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="11-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        11:00 AM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="11-30-am" defaultValue className="hidden peer" name="timetable" />
-                    <label htmlFor="11-30-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        11:30 AM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="12-am" defaultValue className="hidden peer" name="timetable" defaultChecked />
-                      <label htmlFor="12-am" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        12:00 AM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="12-30-pm" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="12-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        12:30 PM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="1-pm" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="1-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        01:00 PM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="1-30-pm" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="1-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        01:30 PM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="2-pm" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="2-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        02:00 PM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="2-30-pm" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="2-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        02:30 PM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="3-pm" defaultValue className="hidden peer" name="timetable" />
-                      <label htmlFor="3-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        03:00 PM
-                      </label>
-                    </li>
-                    <li>
-                      <input type="radio" id="3-30-pm" defaultValue className="hidden peer" name="timetable" />
-                    <label htmlFor="3-30-pm" className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500">
-                        03:30 PM
-                      </label>
-                    </li>
-                  </ul>
-                  
-
-
-
+                <ul
+                  id="timetable"
+                  className="grid w-full grid-cols-3 gap-2 mb-5"
+                >
+                  <li>
+                    <input
+                      type="radio"
+                      id="10-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="10-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      10:00 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="10-30-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="10-30-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      10:30 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="11-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="11-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      11:00 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="11-30-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="11-30-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      11:30 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="12-am"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                      defaultChecked
+                    />
+                    <label
+                      htmlFor="12-am"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      12:00 AM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="12-30-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="12-30-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      12:30 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="1-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="1-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      01:00 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="1-30-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="1-30-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      01:30 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="2-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="2-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      02:00 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="2-30-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="2-30-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      02:30 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="3-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="3-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      03:00 PM
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      id="3-30-pm"
+                      defaultValue
+                      className="hidden peer"
+                      name="timetable"
+                    />
+                    <label
+                      htmlFor="3-30-pm"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-black dark:hover:text-white bg-white dark:bg-zinc-300 border rounded-lg cursor-pointer text-black border-gray-200 dark:border-gray-500 dark:hover:border-gray-600 dark:peer-checked:text-white peer-checked:bg-blue-50 peer-checked:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:peer-checked:bg-gray-500"
+                    >
+                      03:30 PM
+                    </label>
+                  </li>
+                </ul>
               </div>
 
               <div className="mx-5">
@@ -388,7 +528,10 @@ const MyBooking = () => {
                 ></textarea>
 
                 <div className="flex justify-end mt-6">
-                  <Link to='/MyAppointments' className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4">
+                  <Link
+                    to="/MyAppointments"
+                    className="bg-red-500 text-white px-6 py-2 rounded-2xl mr-4"
+                  >
                     Cancel
                   </Link>
 
