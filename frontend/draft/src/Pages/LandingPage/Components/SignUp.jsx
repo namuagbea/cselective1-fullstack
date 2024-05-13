@@ -126,7 +126,8 @@ const SignUp = ({ onClose }) => {
                     <input
                       className="shadow lg:h-[4vh] lg:p-2 appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       id="email"
-                      type="text"
+                      type="email"
+                      name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
