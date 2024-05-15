@@ -5,9 +5,8 @@ The _Dental Clinic Appointment System_ allows potential customers to book an app
 ## Features
 
 * Seamless Online Bookings — Allows customers to book their appointments online and not have to go to the clinic just to schedule a date.
-* Patient Profiles — The system would have a stored background information of the patients medical history and treatment preferences for personalized care.
-* Calendar Management — Users of the system, be it an admin or a patient, would have access to the system’s calendar appointments to manage availability and eliminate the possibility of double bookings and the like.
-* Patient Communication — Patients would be notified of their upcoming appointments via their respective emails or SMS, whichever they prefer. This allows communication between the patients and clinic staff regarding appointments and necessary procedures.
+* Patient Profiles — Allows patients to sign up or login in to their existing accounts. The system would have a stored background information of the patient's booking history for them to view and delete if necessary. 
+* Appointment Confirmation - Allows the customers to receive an email from the website to confirm their appointment.
 
 Overall, the application provides convenience and ease of use for all its benefactors.
 
@@ -19,12 +18,12 @@ Overall, the application provides convenience and ease of use for all its benefa
 </p>
 
 ## Libraries used
-- React
-- TailwindCSS
-- Axios
-- Django Rest Framework
-- Django Rest Framework JWT
-- Django CORS Headers
+* React
+* TailwindCSS
+* Axios
+* Django Rest Framework
+* Django Rest Framework JWT
+* Django CORS Headers
 
 ## Pictures of the Application
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
