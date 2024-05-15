@@ -23,8 +23,8 @@ Overall, the application provides convenience and ease of use for all its benefa
 - TailwindCSS
 - Axios
 - Django Rest Framework
-- Django CORS Headers
 - Django Rest Framework JWT
+- Django CORS Headers
 
 ## Pictures of the Application
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
@@ -94,4 +94,4 @@ Overall, the application provides convenience and ease of use for all its benefa
 ## Contributors
 | <img src="/assets/yassir.jpg" width="200" height="300"> | <img src="/assets/ninya.jpg" width="200" height="300"> | <img src="/assets/bea.jpg" width="200" height="300"> |
 |:--:|:--:|:--:|
-| Yassir Utara | Marjhealou Niña Anne Paraiso | Bea Lyza Namuag |
+| Utara, Yassir | Paraiso, Marjhealou Niña Anne | Namuag, Bea Lyza |
