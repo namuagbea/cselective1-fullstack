@@ -18,4 +18,17 @@ Overall, the application provides convenience and ease of use for all its benefa
 <b>ERD Link:</b> https://lucid.app/lucidchart/a0ef92a4-2ea2-4144-a007-6159bd04aa04/edit?viewport_loc=-934%2C-435%2C2206%2C907%2C0_0&invitationId=inv_a9c76ec7-316a-4c87-b05c-d676ced56abb
 </p>
 
+## Libraries used
+- React
+- TailwindCSS
+- Axios
+- Django Rest Framework
+- Django CORS Headers
+- Django Rest Framework JWT
 
+## Pictures of the Application
+
+## Contributors
+| ![Image 1](/assets/yassir.jpg) | ![Image 2](/assets/ninya.jpg) | ![Image 3](/assets/bea.jpg) |
+|:--:|:--:|:--:|
+| Yassir Utara | Marjhealou Nina Anne Paraiso | Bea Lyza Namuag |
