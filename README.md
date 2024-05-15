@@ -27,25 +27,71 @@ Overall, the application provides convenience and ease of use for all its benefa
 - Django Rest Framework JWT
 
 ## Pictures of the Application
-<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
-    <img src="/assets/website/1.png" alt="Screenshot 1" style="width: 100%; height: auto;">
-    <img src="/assets/website/2a.png" alt="Screenshot 2" style="width: 100%; height: auto;">
-    <img src="/assets/website/2b.png" alt="Screenshot 2" style="width: 100%; height: auto;">
-    <img src="/assets/website/3a.png" alt="Screenshot 3" style="width: 100%; height: auto;">
-    <img src="/assets/website/3b.png" alt="Screenshot 3" style="width: 100%; height: auto;">
-    <img src="/assets/website/4.png" alt="Screenshot 4" style="width: 100%; height: auto;">
-    <img src="/assets/website/5.png" alt="Screenshot 5" style="width: 100%; height: auto;">
-    <img src="/assets/website/6.png" alt="Screenshot 6" style="width: 100%; height: auto;">
-    <img src="/assets/website/7.png" alt="Screenshot 7" style="width: 100%; height: auto;">
-    <img src="/assets/website/8.png" alt="Screenshot 8" style="width: 100%; height: auto;">
-    <img src="/assets/website/9a.png" alt="Screenshot 9" style="width: 100%; height: auto;">
-    <img src="/assets/website/9b.png" alt="Screenshot 9" style="width: 100%; height: auto;">
-    <img src="/assets/website/10.png" alt="Screenshot 10" style="width: 100%; height: auto;">
-    <img src="/assets/website/11.png" alt="Screenshot 11" style="width: 100%; height: auto;">
-    <img src="/assets/website/12.png" alt="Screenshot 12" style="width: 100%; height: auto;">
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+    <div>
+        <img src="/assets/website/1.png" alt="Screenshot 1" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 1</p>
+    </div>
+    <div>
+        <img src="/assets/website/2a.png" alt="Screenshot 2" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 2a</p>
+    </div>
+    <div>
+        <img src="/assets/website/2b.png" alt="Screenshot 2" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 2b</p>
+    </div>
+    <div>
+        <img src="/assets/website/3a.png" alt="Screenshot 3" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 3a</p>
+    </div>
+    <div>
+        <img src="/assets/website/3b.png" alt="Screenshot 3" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 3b</p>
+    </div>
+    <div>
+        <img src="/assets/website/4.png" alt="Screenshot 4" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/5.png" alt="Screenshot 5" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/6.png" alt="Screenshot 6" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/7.png" alt="Screenshot 7" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/8.png" alt="Screenshot 8" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/9a.png" alt="Screenshot 9a" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/9b.png" alt="Screenshot 9b" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/10.png" alt="Screenshot 10" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/11.png" alt="Screenshot 11" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+    <div>
+        <img src="/assets/website/12.png" alt="Screenshot 12" style="width: 100%; height: auto;">
+        <p style="text-align: center;">Screenshot 4</p>
+    </div>
+
 </div>
 
 ## Contributors
-| <img src="/assets/yassir.jpg" width="200" height="200"> | <img src="/assets/ninya.jpg" width="200" height="200"> | <img src="/assets/bea.jpg" width="200" height="200"> |
+| <img src="/assets/yassir.jpg" width="200" height="350"> | <img src="/assets/ninya.jpg" width="200" height="350"> | <img src="/assets/bea.jpg" width="200" height="350"> |
 |:--:|:--:|:--:|
-| Yassir Utara | Marjhealou Nina Anne Paraiso | Bea Lyza Namuag |
+| Yassir Utara | Marjhealou Niña Anne Paraiso | Bea Lyza Namuag |
